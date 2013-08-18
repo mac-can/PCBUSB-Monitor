@@ -15,6 +15,7 @@
 		6297F5F617C0F967006B2F69 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5F417C0F967006B2F69 /* MainMenu.xib */; };
 		6297F5FE17C106A6006B2F69 /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5FC17C106A6006B2F69 /* License.rtf */; };
 		6297F60117C106BF006B2F69 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5FF17C106BF006B2F69 /* Readme.rtf */; };
+		6297F60417C10DF8006B2F69 /* PCBUSB.c in Sources */ = {isa = PBXBuildFile; fileRef = 6297F60317C10DF8006B2F69 /* PCBUSB.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		6297F5F517C0F967006B2F69 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6297F5FD17C106A6006B2F69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/License.rtf; sourceTree = "<group>"; };
 		6297F60017C106BF006B2F69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Readme.rtf; sourceTree = "<group>"; };
+		6297F60317C10DF8006B2F69 /* PCBUSB.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PCBUSB.c; path = Wrapper/PCBUSB.c; sourceTree = "<group>"; };
+		6297F60517C10E30006B2F69 /* PCBUSB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PCBUSB.h; path = Wrapper/PCBUSB.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,7 @@
 				6297F5F117C0F966006B2F69 /* AppDelegate.h */,
 				6297F5F217C0F966006B2F69 /* AppDelegate.m */,
 				6297F5F417C0F967006B2F69 /* MainMenu.xib */,
+				6297F60217C10CD6006B2F69 /* Wrapper */,
 				6297F5E617C0F966006B2F69 /* Supporting Files */,
 			);
 			path = "MacCAN Monitor";
@@ -106,6 +110,15 @@
 				6297F5EE17C0F966006B2F69 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6297F60217C10CD6006B2F69 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				6297F60317C10DF8006B2F69 /* PCBUSB.c */,
+				6297F60517C10E30006B2F69 /* PCBUSB.h */,
+			);
+			name = Wrapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +189,7 @@
 			files = (
 				6297F5EC17C0F966006B2F69 /* main.m in Sources */,
 				6297F5F317C0F966006B2F69 /* AppDelegate.m in Sources */,
+				6297F60417C10DF8006B2F69 /* PCBUSB.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
