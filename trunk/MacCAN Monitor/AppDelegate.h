@@ -7,8 +7,43 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Wrapper/PCBUSB.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+#define TIME_ZERO	0
+#define TIME_ABS	1
+#define TIME_REL	2
+
+
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    
+    // PCAN Moni - main window
+    IBOutlet NSArrayController *arrayController;
+    IBOutlet NSTableView *tableView;
+    IBOutlet id outputStatus;
+    
+    // Connect dialog - panel
+    IBOutlet NSPanel *connectSheet;
+    IBOutlet NSComboBox *comboInterface;
+    IBOutlet NSComboBox *comboBaudrate;
+    IBOutlet NSButton *checkboxLog;
+    IBOutlet NSImageView *imageIcon;
+    
+    // Transmit dialog -panel
+    IBOutlet NSPanel *transmitSheet;
+    IBOutlet NSComboBox *comboMessage;
+    IBOutlet NSTextField *textMessage;
+    
+    // CAN device interface
+    TPCANHandle hDevice;
+    UInt64 frameCounter;
+    
+    // Mother´s little helpers
+    long indexInterface;
+    long indexBaudrate;
+    long modeTimestamp;
+    bool clearViewRequest;
+    NSTimer *receiveTimer;
+}
 
 @property (assign) IBOutlet NSWindow *window;
 
