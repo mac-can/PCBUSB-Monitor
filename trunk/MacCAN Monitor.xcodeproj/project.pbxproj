@@ -13,6 +13,8 @@
 		6297F5F017C0F966006B2F69 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5EE17C0F966006B2F69 /* Credits.rtf */; };
 		6297F5F317C0F966006B2F69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6297F5F217C0F966006B2F69 /* AppDelegate.m */; };
 		6297F5F617C0F967006B2F69 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5F417C0F967006B2F69 /* MainMenu.xib */; };
+		6297F5FE17C106A6006B2F69 /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5FC17C106A6006B2F69 /* License.rtf */; };
+		6297F60117C106BF006B2F69 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5FF17C106BF006B2F69 /* Readme.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		6297F5F117C0F966006B2F69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6297F5F217C0F966006B2F69 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6297F5F517C0F967006B2F69 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6297F5FD17C106A6006B2F69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/License.rtf; sourceTree = "<group>"; };
+		6297F60017C106BF006B2F69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Readme.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 		6297F5E617C0F966006B2F69 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6297F5FF17C106BF006B2F69 /* Readme.rtf */,
+				6297F5FC17C106A6006B2F69 /* License.rtf */,
 				6297F5E717C0F966006B2F69 /* MacCAN Monitor-Info.plist */,
 				6297F5E817C0F966006B2F69 /* InfoPlist.strings */,
 				6297F5EB17C0F966006B2F69 /* main.m */,
@@ -156,6 +162,8 @@
 				6297F5EA17C0F966006B2F69 /* InfoPlist.strings in Resources */,
 				6297F5F017C0F966006B2F69 /* Credits.rtf in Resources */,
 				6297F5F617C0F967006B2F69 /* MainMenu.xib in Resources */,
+				6297F5FE17C106A6006B2F69 /* License.rtf in Resources */,
+				6297F60117C106BF006B2F69 /* Readme.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +204,22 @@
 				6297F5F517C0F967006B2F69 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		6297F5FC17C106A6006B2F69 /* License.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6297F5FD17C106A6006B2F69 /* en */,
+			);
+			name = License.rtf;
+			sourceTree = "<group>";
+		};
+		6297F5FF17C106BF006B2F69 /* Readme.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6297F60017C106BF006B2F69 /* en */,
+			);
+			name = Readme.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -303,6 +327,7 @@
 				6297F5FB17C0F967006B2F69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
