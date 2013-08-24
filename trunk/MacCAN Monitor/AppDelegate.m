@@ -11,6 +11,10 @@
 #import <mach/mach_time.h>
 
 
+#define _SHOW_INFO_BAUDRATE
+//#define _issue_MACCAN_2
+
+
 #define MAX_CAN_MESSAGES    1024
 
 
@@ -110,6 +114,8 @@ const struct {
     indexInterface = [comboInterface indexOfSelectedItem];
     indexBaudrate = [comboBaudrate indexOfSelectedItem];
     
+    [self endConnectSheet:sender];
+
     if([checkboxLog state] == NSOnState)
     {
         result = CAN_SetValue(PCAN_NONEBUS, PCAN_EXT_LOG_USB, NULL, 0);
@@ -141,7 +147,6 @@ const struct {
         [alert setAlertStyle:NSCriticalAlertStyle];
         [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
     }
-    [self endConnectSheet:sender];
 }
 
 - (IBAction)showInfo:(id)sender
@@ -173,7 +178,7 @@ const struct {
         }
         NSAlert *alert = [NSAlert alertWithMessageText:@"MacCAN Monitor using libPCBUSB" defaultButton:@"OK" alternateButton:nil otherButton:nil
 #ifdef _SHOW_INFO_BAUDRATE
-                             informativeTextWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s\nBaud rate:\n   %s kBit/s (%04x)",hardware,software,baudrate,btr0btr1];
+                             informativeTextWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s\nBaud rate:\n   %s kBit/s (Btr0Btr1 = 0x%04x)",hardware,software,baudrate,btr0btr1];
 #else
     informativeTextWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s",hardware,software];
 #endif
@@ -279,10 +284,11 @@ const struct {
     UInt64 microseconds;
     static UInt64 lastStamp;
     static int firstTime = 1;
-    /* [MACCAN-2] */
+    /* [MACCAN-2] Old CAN Messages in the URB of the Data Receive Pipe */
+#ifdef _issue_MACCAN_2
 	long long value;
     static long long expected = 0ULL;
-    
+#endif
     mach_timebase_info_data_t info;
     mach_timebase_info(&info);
     
@@ -378,7 +384,8 @@ const struct {
 	        r = 0;
             n++;
 	        
-	        /* [MACCAN-2] */
+	        /* [MACCAN-2] Old CAN Messages in the URB of the Data Receive Pipe */
+#ifdef _issue_MACCAN_2
 	        if(result == PCAN_ERROR_OK) {
 				if(!(canMessage.MSGTYPE & PCAN_MESSAGE_STATUS)) {
 					value = 0LL;
@@ -408,6 +415,7 @@ const struct {
 					expected++;
 	            }
 	        }
+#endif
 	    }
         duration = mach_absolute_time() - start;
         /* convert to nanoseconds */
