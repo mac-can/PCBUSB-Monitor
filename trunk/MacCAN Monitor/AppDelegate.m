@@ -79,9 +79,15 @@ const struct {
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
+    TPCANStatus result;
+    
     if(hDevice != PCAN_NONEBUS)
     {
-        (void)CAN_Uninitialize(hDevice);
+        result = CAN_Uninitialize(hDevice);
+        
+        NSString *string = [NSString stringWithFormat:@"PCAN-USB%li %s disconnected",indexInterface+1,(result == PCAN_ERROR_OK)? "successfully" : "not"];
+        [outputStatus setStringValue:string];
+        NSLog(@"%@",string);        
     }
 }
 
