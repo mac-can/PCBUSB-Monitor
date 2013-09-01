@@ -89,7 +89,7 @@ const struct {
     {
         result = CAN_Uninitialize(hDevice);
         
-        NSString *string = [NSString stringWithFormat:@"PCAN-USB%li %s disconnected",indexInterface+1,(result == PCAN_ERROR_OK)? "successfully" : "not"];
+        NSString *string = [NSString stringWithFormat:@"PCAN-USB%li %s disconnected",indexInterface+1,(result == PCAN_ERROR_OK)? "successfully" : (result == PCAN_ERROR_INITIALIZE)? "already" : "not"];
         [outputStatus setStringValue:string];
         NSLog(@"%@",string);        
     }
@@ -263,6 +263,8 @@ const struct {
         }
         else
         {
+            [self endTransmitSheet:sender];
+            
             char errorText[256] = "(unknown)";
             (void)CAN_GetErrorText(status, 0x00, errorText);
             
@@ -280,6 +282,7 @@ const struct {
     TPCANStatus result;
     int n = 0;
     static int r = 0;
+    static int x = 0;
     UInt64 timeStamp;
     UInt64 microseconds;
     static UInt64 lastStamp;
@@ -311,7 +314,7 @@ const struct {
         //NSLog(@"clear = %lluns for %lu object(s)",((d*info.numer)/info.denom),arrayCount);
     }
     uint64_t duration = mach_absolute_time() - start;
-    
+
     do
     {
 	    if((result = CAN_Read(hDevice, &canMessage, &canTimestamp)) == PCAN_ERROR_OK)
@@ -437,6 +440,19 @@ const struct {
             
             //uint64_t d = mach_absolute_time() - s;
             //NSLog(@"remove = %lluns for %lu object(s)",((d*info.numer)/info.denom),arrayCount-MAX_CAN_MESSAGES);
+        }
+        if(result == PCAN_ERROR_INITIALIZE)
+        {
+            if(!x)
+            {
+                char errorText[256] = "(unknown)";
+                (void)CAN_GetErrorText(result = PCAN_ERROR_ILLHW, 0x00, errorText);
+            
+                NSString *string = [NSString stringWithFormat:@"Connection to PCAN-USB%li lost - Error %04lx: %s",indexInterface+1,result,errorText];
+                [outputStatus setStringValue:string];
+                NSLog(@"%@",string);
+            }
+            x = 1;
         }
     }
     //else

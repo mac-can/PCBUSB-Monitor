@@ -1337,9 +1337,10 @@
 							<string key="NSToolbarItemPaletteLabel">Transmit</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="1008679998">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {122, 19}}</string>
+								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="999845419">
@@ -1381,9 +1382,10 @@
 							<string key="NSToolbarItemPaletteLabel">Clear</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="50320739">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {39, 38}}</string>
+								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:1574</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="497991049">
@@ -1399,6 +1401,10 @@
 									<reference key="NSControlView" ref="50320739"/>
 									<int key="NSButtonFlags">-2037645312</int>
 									<int key="NSButtonFlags2">135</int>
+									<object class="NSCustomResource" key="NSNormalImage" id="615992078">
+										<string key="NSClassName">NSImage</string>
+										<string key="NSResourceName">icon_clear</string>
+									</object>
 									<string key="NSAlternateContents"/>
 									<string key="NSKeyEquivalent"/>
 									<int key="NSPeriodicDelay">200</int>
@@ -1406,7 +1412,7 @@
 								</object>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 							</object>
-							<nil key="NSToolbarItemImage"/>
+							<reference key="NSToolbarItemImage" ref="615992078"/>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
 							<string key="NSToolbarItemMinSize">{39, 38}</string>
@@ -1425,9 +1431,10 @@
 							<string key="NSToolbarItemPaletteLabel">Info</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSButton" key="NSToolbarItemView" id="178999638">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {39, 38}}</string>
+								<reference key="NSSuperview"/>
 								<string key="NSReuseIdentifierKey">_NS:1574</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="122214431">
@@ -1439,6 +1446,10 @@
 									<reference key="NSControlView" ref="178999638"/>
 									<int key="NSButtonFlags">-2037645312</int>
 									<int key="NSButtonFlags2">135</int>
+									<object class="NSCustomResource" key="NSNormalImage" id="460593854">
+										<string key="NSClassName">NSImage</string>
+										<string key="NSResourceName">icon_info</string>
+									</object>
 									<string key="NSAlternateContents"/>
 									<string key="NSKeyEquivalent"/>
 									<int key="NSPeriodicDelay">200</int>
@@ -1446,7 +1457,7 @@
 								</object>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 							</object>
-							<nil key="NSToolbarItemImage"/>
+							<reference key="NSToolbarItemImage" ref="460593854"/>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
 							<string key="NSToolbarItemMinSize">{39, 38}</string>
@@ -1589,7 +1600,7 @@
 						<reference ref="323505044"/>
 						<reference ref="595648710"/>
 					</array>
-					<array key="NSToolbarIBDefaultItems">
+					<array class="NSMutableArray" key="NSToolbarIBDefaultItems">
 						<reference ref="620081556"/>
 						<reference ref="750028789"/>
 						<reference ref="706687938"/>
@@ -1618,7 +1629,7 @@
 											<string key="NSFrameSize">{704, 427}</string>
 											<reference key="NSSuperview" ref="735297946"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="412938506"/>
+											<reference key="NSNextKeyView" ref="460166295"/>
 											<string key="NSReuseIdentifierKey">_NS:1828</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -1629,11 +1640,11 @@
 												<string key="NSFrameSize">{704, 17}</string>
 												<reference key="NSSuperview" ref="412938506"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="924010295"/>
+												<reference key="NSNextKeyView" ref="735297946"/>
 												<string key="NSReuseIdentifierKey">_NS:1830</string>
 												<reference key="NSTableView" ref="583703262"/>
 											</object>
-											<object class="_NSCornerView" key="NSCornerView" id="924010295">
+											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>
 												<int key="NSvFlags">-2147483392</int>
 												<string key="NSFrame">{{224, 0}, {16, 17}}</string>
@@ -1918,7 +1929,7 @@
 							<string key="NSFrame">{{20, 45}, {706, 445}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="735297946"/>
+							<reference key="NSNextKeyView" ref="412938506"/>
 							<string key="NSReuseIdentifierKey">_NS:1824</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="460166295"/>
@@ -5590,6 +5601,7 @@
 							<reference ref="178999638"/>
 						</array>
 						<reference key="parent" ref="497376016"/>
+						<string key="objectName">i</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">641</int>
@@ -6355,57 +6367,13 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">699</int>
+			<int key="maxID">701</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clearView:">id</string>
-						<string key="connectInterface:">id</string>
-						<string key="endConnectSheet:">id</string>
-						<string key="endTransmitSheet:">id</string>
-						<string key="showConnectSheet:">id</string>
-						<string key="showInfo:">id</string>
-						<string key="showTransmitSheet:">id</string>
-						<string key="transmitMessage:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clearView:">
-							<string key="name">clearView:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="connectInterface:">
-							<string key="name">connectInterface:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="endConnectSheet:">
-							<string key="name">endConnectSheet:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="endTransmitSheet:">
-							<string key="name">endTransmitSheet:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="showConnectSheet:">
-							<string key="name">showConnectSheet:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="showInfo:">
-							<string key="name">showInfo:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="showTransmitSheet:">
-							<string key="name">showTransmitSheet:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="transmitMessage:">
-							<string key="name">transmitMessage:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="arrayController">NSArrayController</string>
 						<string key="checkboxLog">NSButton</string>
@@ -6495,6 +6463,8 @@
 			<string key="NSSwitch">{15, 15}</string>
 			<string key="NSToolbarCustomize">{32, 32}</string>
 			<string key="NSToolbarPrint">{32, 32}</string>
+			<string key="icon_clear">{64, 64}</string>
+			<string key="icon_info">{64, 64}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 	</data>
