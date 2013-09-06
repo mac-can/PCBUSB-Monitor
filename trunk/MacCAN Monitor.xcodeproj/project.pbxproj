@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6258EAEE17CA2F680096D5A8 /* MacCAN Monitor.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 6258EAED17CA2F680096D5A8 /* MacCAN Monitor.iconset */; };
-		6258EAF717D39D6F0096D5A8 /* icon_clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 6258EAF317D39D6F0096D5A8 /* icon_clear.png */; };
-		6258EAF817D39D6F0096D5A8 /* icon_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 6258EAF517D39D6F0096D5A8 /* icon_info.png */; };
 		6297F5E017C0F966006B2F69 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6297F5DF17C0F966006B2F69 /* Cocoa.framework */; };
 		6297F5EA17C0F966006B2F69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5E817C0F966006B2F69 /* InfoPlist.strings */; };
 		6297F5EC17C0F966006B2F69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6297F5EB17C0F966006B2F69 /* main.m */; };
@@ -24,8 +22,6 @@
 
 /* Begin PBXFileReference section */
 		6258EAED17CA2F680096D5A8 /* MacCAN Monitor.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "MacCAN Monitor.iconset"; sourceTree = SOURCE_ROOT; };
-		6258EAF417D39D6F0096D5A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/icon_clear.png; sourceTree = "<group>"; };
-		6258EAF617D39D6F0096D5A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/icon_info.png; sourceTree = "<group>"; };
 		6297F5DC17C0F966006B2F69 /* MacCAN Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacCAN Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6297F5DF17C0F966006B2F69 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6297F5E217C0F966006B2F69 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -112,8 +108,6 @@
 		6297F5E617C0F966006B2F69 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6258EAF317D39D6F0096D5A8 /* icon_clear.png */,
-				6258EAF517D39D6F0096D5A8 /* icon_info.png */,
 				6297F5EE17C0F966006B2F69 /* Credits.rtf */,
 				6297F5FF17C106BF006B2F69 /* Readme.rtf */,
 				6297F5FC17C106A6006B2F69 /* License.rtf */,
@@ -192,8 +186,6 @@
 				6297F5FE17C106A6006B2F69 /* License.rtf in Resources */,
 				6297F60117C106BF006B2F69 /* Readme.rtf in Resources */,
 				6258EAEE17CA2F680096D5A8 /* MacCAN Monitor.iconset in Resources */,
-				6258EAF717D39D6F0096D5A8 /* icon_clear.png in Resources */,
-				6258EAF817D39D6F0096D5A8 /* icon_info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,22 +206,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6258EAF317D39D6F0096D5A8 /* icon_clear.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6258EAF417D39D6F0096D5A8 /* en */,
-			);
-			name = icon_clear.png;
-			sourceTree = "<group>";
-		};
-		6258EAF517D39D6F0096D5A8 /* icon_info.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6258EAF617D39D6F0096D5A8 /* en */,
-			);
-			name = icon_info.png;
-			sourceTree = "<group>";
-		};
 		6297F5E817C0F966006B2F69 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
