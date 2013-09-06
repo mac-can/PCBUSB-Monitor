@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6258EAEE17CA2F680096D5A8 /* MacCAN Monitor.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 6258EAED17CA2F680096D5A8 /* MacCAN Monitor.iconset */; };
+		627944A917DA4635006CE9CD /* icon_clear.icns in Resources */ = {isa = PBXBuildFile; fileRef = 627944A317DA4635006CE9CD /* icon_clear.icns */; };
+		627944AA17DA4635006CE9CD /* icon_info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 627944A517DA4635006CE9CD /* icon_info.icns */; };
+		627944AB17DA4635006CE9CD /* icon_send.icns in Resources */ = {isa = PBXBuildFile; fileRef = 627944A717DA4635006CE9CD /* icon_send.icns */; };
 		6297F5E017C0F966006B2F69 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6297F5DF17C0F966006B2F69 /* Cocoa.framework */; };
 		6297F5EA17C0F966006B2F69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6297F5E817C0F966006B2F69 /* InfoPlist.strings */; };
 		6297F5EC17C0F966006B2F69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6297F5EB17C0F966006B2F69 /* main.m */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		6258EAED17CA2F680096D5A8 /* MacCAN Monitor.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "MacCAN Monitor.iconset"; sourceTree = SOURCE_ROOT; };
+		627944A417DA4635006CE9CD /* en */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = en; path = en.lproj/icon_clear.icns; sourceTree = "<group>"; };
+		627944A617DA4635006CE9CD /* en */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = en; path = en.lproj/icon_info.icns; sourceTree = "<group>"; };
+		627944A817DA4635006CE9CD /* en */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = en; path = en.lproj/icon_send.icns; sourceTree = "<group>"; };
 		6297F5DC17C0F966006B2F69 /* MacCAN Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacCAN Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6297F5DF17C0F966006B2F69 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6297F5E217C0F966006B2F69 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -108,6 +114,9 @@
 		6297F5E617C0F966006B2F69 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				627944A317DA4635006CE9CD /* icon_clear.icns */,
+				627944A517DA4635006CE9CD /* icon_info.icns */,
+				627944A717DA4635006CE9CD /* icon_send.icns */,
 				6297F5EE17C0F966006B2F69 /* Credits.rtf */,
 				6297F5FF17C106BF006B2F69 /* Readme.rtf */,
 				6297F5FC17C106A6006B2F69 /* License.rtf */,
@@ -186,6 +195,9 @@
 				6297F5FE17C106A6006B2F69 /* License.rtf in Resources */,
 				6297F60117C106BF006B2F69 /* Readme.rtf in Resources */,
 				6258EAEE17CA2F680096D5A8 /* MacCAN Monitor.iconset in Resources */,
+				627944A917DA4635006CE9CD /* icon_clear.icns in Resources */,
+				627944AA17DA4635006CE9CD /* icon_info.icns in Resources */,
+				627944AB17DA4635006CE9CD /* icon_send.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +218,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		627944A317DA4635006CE9CD /* icon_clear.icns */ = {
+			isa = PBXVariantGroup;
+			children = (
+				627944A417DA4635006CE9CD /* en */,
+			);
+			name = icon_clear.icns;
+			sourceTree = "<group>";
+		};
+		627944A517DA4635006CE9CD /* icon_info.icns */ = {
+			isa = PBXVariantGroup;
+			children = (
+				627944A617DA4635006CE9CD /* en */,
+			);
+			name = icon_info.icns;
+			sourceTree = "<group>";
+		};
+		627944A717DA4635006CE9CD /* icon_send.icns */ = {
+			isa = PBXVariantGroup;
+			children = (
+				627944A817DA4635006CE9CD /* en */,
+			);
+			name = icon_send.icns;
+			sourceTree = "<group>";
+		};
 		6297F5E817C0F966006B2F69 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
