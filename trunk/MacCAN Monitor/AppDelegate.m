@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "CANMessage.h"
 #import <mach/mach_time.h>
+#import <sys/time.h>
+#import <time.h>
 
 
 #define _SHOW_INFO_BAUDRATE
@@ -70,6 +72,8 @@ const struct {
     [checkboxLog setState:NSOffState];
     
     modeTimestamp = TIME_ZERO;
+    firstTimestamp = true;
+    lastTimestamp = 0;
     
     hDevice = PCAN_NONEBUS;
     frameCounter = 0;
@@ -220,6 +224,10 @@ const struct {
     TPCANMsg canMessage;
     TPCANStatus status;
     
+	struct timeval tv;
+    UInt64 timeStamp;
+    UInt64 microseconds;
+    
     NSString *stringInput = [textMessage stringValue];
     NSArray *arrayInput = [stringInput componentsSeparatedByString:@" "];
     for(int i = 0; i < [arrayInput count] && i < 9; i++)
@@ -241,14 +249,46 @@ const struct {
         {
 	        NSMutableString *textData = [NSMutableString stringWithCapacity:(3*8)];
 	        NSMutableString *textAscii = [NSMutableString stringWithCapacity:(3*8)];
+	        NSMutableString *textTimestamp = [NSMutableString stringWithCapacity:25];
 	        for(UInt8 i = 0; i < canMessage.LEN; i++)
 	        {
 	            [textData appendFormat:@"%02x%c",canMessage.DATA[i],((i+1) < canMessage.LEN)? ' ' : 0];
 	            [textAscii appendFormat:@"%c ",(canMessage.DATA[i] < 32)? '.' : canMessage.DATA[i]];
 	        }
+            gettimeofday(&tv, NULL);
+	        timeStamp = ((UInt64)tv.tv_sec * 1000ULL * 1000ULL) + (UInt64)tv.tv_usec;
+	        if(firstTimestamp)
+	        {
+	            lastTimestamp = timeStamp;
+	            firstTimestamp = 0;
+	        }
+	        switch(modeTimestamp)
+	        {
+	            case TIME_ZERO:
+	                microseconds = timeStamp - lastTimestamp;
+	                break;
+	            case TIME_REL:
+	                microseconds = timeStamp - lastTimestamp;
+	                lastTimestamp = timeStamp;
+	                break;
+	            default:
+	                microseconds = timeStamp;
+	                break;
+	        }
+	        microseconds %= (24LLU * 60LLU * 60LLU * 1000LLU * 1000LLU);
+	        [textTimestamp appendFormat:@"%2llu:",microseconds / (60LLU * 60LLU * 1000LLU * 1000LLU)];
+	        microseconds %= (60LLU * 60LLU * 1000LLU * 1000LLU);
+	        [textTimestamp appendFormat:@"%02llu:",microseconds / (60LLU * 1000LLU * 1000LLU)];
+	        microseconds %= (60LLU * 1000LLU * 1000LLU);
+	        [textTimestamp appendFormat:@"%02llu.",microseconds / (1000LLU * 1000LLU)];
+	        microseconds %= (1000LLU * 1000LLU);
+	        [textTimestamp appendFormat:@"%03llu.",microseconds / (1000LLU)];
+	        microseconds %= (1000LLU);
+	        [textTimestamp appendFormat:@"%03llu",microseconds];
+
 	        CANMessage *newMessage = [[CANMessage alloc] init];
 	        [newMessage setNumber:[NSString stringWithFormat:@"%llu",frameCounter++]];
-	        [newMessage setTimestamp:[NSString stringWithFormat:@" 0:00:00.000.000"]];
+	        [newMessage setTimestamp:textTimestamp];
 	        [newMessage setIdentifier:[NSString stringWithFormat:@"%03lx",canMessage.ID]];
 	        [newMessage setType:[NSString stringWithFormat:@"trm"]];
 	        [newMessage setData:textData];
@@ -256,10 +296,12 @@ const struct {
 	        [arrayController addObject:newMessage];
             
 	        NSMutableString *stringOutput = [NSMutableString stringWithCapacity:(4)+(3*8)];
-            [stringOutput appendFormat:@"%03lx ",canMessage.ID];
+            [stringOutput appendFormat:@"%03lx%c",canMessage.ID,(0 < canMessage.LEN)? ' ' : 0];
             [stringOutput appendString:textData];
-            [comboMessage addItemWithObjectValue:stringOutput];
+            [comboMessage insertItemWithObjectValue:stringOutput atIndex:0];
             [textMessage setStringValue:@""];
+
+            [tableView scrollRowToVisible:[tableView selectedRow]];
         }
         else
         {
@@ -285,8 +327,6 @@ const struct {
     static int x = 0;
     UInt64 timeStamp;
     UInt64 microseconds;
-    static UInt64 lastStamp;
-    static int firstTime = 1;
     /* [MACCAN-2] Old CAN Messages in the URB of the Data Receive Pipe */
 #ifdef _issue_MACCAN_2
 	long long value;
@@ -306,7 +346,7 @@ const struct {
         [arrayController removeObjectsAtArrangedObjectIndexes:indexSet];
         
         frameCounter = 0;
-        firstTime = 1;
+        firstTimestamp = true;
         r = 0;
         clearViewRequest = NO;
         
@@ -347,19 +387,19 @@ const struct {
 	            [textAscii appendFormat:@"%c ",(canMessage.DATA[i] < 32)? '.' : canMessage.DATA[i]];
 	        }
 	        timeStamp = ((((UInt64)canTimestamp.millis_overflow * (UInt32)4294967295) + (UInt64)canTimestamp.millis) * 1000) + ((UInt64)canTimestamp.micros);
-	        if(firstTime)
+	        if(firstTimestamp)
 	        {
-	            lastStamp = timeStamp;
-	            firstTime = 0;
+	            lastTimestamp = timeStamp;
+	            firstTimestamp = 0;
 	        }
 	        switch(modeTimestamp)
 	        {
 	            case TIME_ZERO:
-	                microseconds = timeStamp - lastStamp;
+	                microseconds = timeStamp - lastTimestamp;
 	                break;
 	            case TIME_REL:
-	                microseconds = timeStamp - lastStamp;
-	                lastStamp = timeStamp;
+	                microseconds = timeStamp - lastTimestamp;
+	                lastTimestamp = timeStamp;
 	                break;
 	            default:
 	                microseconds = timeStamp;

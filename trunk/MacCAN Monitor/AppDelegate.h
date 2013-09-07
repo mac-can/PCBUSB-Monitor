@@ -41,6 +41,8 @@
     long indexInterface;
     long indexBaudrate;
     long modeTimestamp;
+    bool firstTimestamp;
+    UInt64 lastTimestamp;
     bool clearViewRequest;
     NSTimer *receiveTimer;
 }
