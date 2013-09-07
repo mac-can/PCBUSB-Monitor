@@ -220,7 +220,8 @@ const struct {
 
 - (IBAction)transmitMessage:(id)sender
 {
-    unsigned valueInput[9];
+    const char *ptrInput = NULL; int n;
+    
     TPCANMsg canMessage;
     TPCANStatus status;
     
@@ -228,23 +229,82 @@ const struct {
     UInt64 timeStamp;
     UInt64 microseconds;
     
-    NSString *stringInput = [textMessage stringValue];
-    NSArray *arrayInput = [stringInput componentsSeparatedByString:@" "];
-    for(int i = 0; i < [arrayInput count] && i < 9; i++)
-    {
-        NSScanner *scanner = [NSScanner scannerWithString:[arrayInput objectAtIndex:i]];
-        [scanner scanHexInt:&valueInput[i]];
-    }
-    if(![stringInput isEqualToString:@""] && [arrayInput count] > 0)
+    ptrInput = [[textMessage stringValue] UTF8String];
+    
+    if(ptrInput != NULL)
     {
         canMessage.MSGTYPE = PCAN_MESSAGE_STANDARD;
-        canMessage.ID = (DWORD)valueInput[0];
+        canMessage.ID = (DWORD)0x0000;
         canMessage.LEN = (BYTE)0x00;
-        for(int i = 1; i < [arrayInput count] && i < 9; i++)
+        canMessage.DATA[0] = (BYTE)0x00;
+        canMessage.DATA[1] = (BYTE)0x00;
+        canMessage.DATA[2] = (BYTE)0x00;
+        canMessage.DATA[3] = (BYTE)0x00;
+        canMessage.DATA[4] = (BYTE)0x00;
+        canMessage.DATA[5] = (BYTE)0x00;
+        canMessage.DATA[6] = (BYTE)0x00;
+        canMessage.DATA[7] = (BYTE)0x00;
+        
+        /* leading blanks */
+        for(; *ptrInput == ' '; ptrInput++)
+            ;
+        if(*ptrInput == '\0')
+            return;
+        /* identifier (11-bit) */
+        for(; *ptrInput == '0'; ptrInput++)
+            ;
+        for(n = 0; *ptrInput != '\0' && *ptrInput != ' '; ptrInput++, n++)
         {
-            canMessage.DATA[canMessage.LEN] = (BYTE)valueInput[i];
-            canMessage.LEN++;
+            if('0' <= *ptrInput && *ptrInput <= '9')
+                canMessage.ID = (canMessage.ID << 4) + (DWORD)(*ptrInput - '0');
+            else if('a' <= *ptrInput && *ptrInput <= 'f')
+                canMessage.ID = (canMessage.ID << 4) + (DWORD)(*ptrInput - 'a' + 10);
+            else if('A' <= *ptrInput && *ptrInput <= 'F')
+                canMessage.ID = (canMessage.ID << 4) + (DWORD)(*ptrInput - 'A' + 10);
+            else {
+                NSBeep();
+                return;
+            }
         }
+        if(n > 4 || canMessage.ID > 0x7FF) {
+            NSBeep();
+            return;
+        }
+        for(; *ptrInput == ' '; ptrInput++)
+            ;
+        /* 0 to 8 data byte */
+        while(*ptrInput != '\0' && canMessage.LEN < 8)
+        {
+            for(; *ptrInput == '0'; ptrInput++)
+                ;
+            for(n = 0; *ptrInput != '\0' && *ptrInput != ' '; ptrInput++, n++)
+            {
+                if('0' <= *ptrInput && *ptrInput <= '9')
+                    canMessage.DATA[canMessage.LEN] = (canMessage.DATA[canMessage.LEN] << 4) + (BYTE)(*ptrInput - '0');
+                else if('a' <= *ptrInput && *ptrInput <= 'f')
+                    canMessage.DATA[canMessage.LEN] = (canMessage.DATA[canMessage.LEN] << 4) + (BYTE)(*ptrInput - 'a' + 10);
+                else if('A' <= *ptrInput && *ptrInput <= 'F')
+                    canMessage.DATA[canMessage.LEN] = (canMessage.DATA[canMessage.LEN] << 4) + (BYTE)(*ptrInput - 'A' + 10);
+                else {
+                    NSBeep();
+                    return;
+                }
+            }
+            if(n > 2) {
+                NSBeep();
+                return;
+            }
+            for(; *ptrInput == ' '; ptrInput++)
+                ;
+            canMessage.LEN += 1;
+        }
+        /** don´t worry **
+        if(*ptrInput != '\0') {
+            NSBeep();
+            return;
+        }
+         ** be happy:) **/
+        
         if((status = CAN_Write(hDevice, &canMessage)) == PCAN_ERROR_OK)
         {
 	        NSMutableString *textData = [NSMutableString stringWithCapacity:(3*8)];
