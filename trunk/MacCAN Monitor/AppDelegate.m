@@ -161,8 +161,10 @@ const struct {
     unsigned short btr0btr1 = 0x0000;
     TPCANStatus status = PCAN_ERROR_OK;
     
-    status = CAN_GetValue(hDevice, PCAN_CHANNEL_VERSION, (void*)hardware, 256);
-    status = CAN_GetValue(hDevice, PCAN_API_VERSION, (void*)software, 256);
+    if((status = CAN_GetValue(hDevice, PCAN_EXT_HARDWARE_VERSION, (void*)hardware, 256)) != PCAN_ERROR_OK)
+        status = CAN_GetValue(hDevice, PCAN_CHANNEL_VERSION, (void*)hardware, 256);
+    if((status = CAN_GetValue(hDevice, PCAN_EXT_SOFTWARE_VERSION, (void*)software, 256)) != PCAN_ERROR_OK)
+        status = CAN_GetValue(hDevice, PCAN_API_VERSION, (void*)software, 256);
     status = CAN_GetValue(hDevice, PCAN_EXT_BTR0BTR1, (void*)&btr0btr1, sizeof(btr0btr1));
     status = CAN_GetStatus(hDevice);
     
