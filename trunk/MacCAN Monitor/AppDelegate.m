@@ -337,6 +337,10 @@ const struct {
 	                microseconds = timeStamp;
 	                break;
 	        }
+#if (1)
+            // Because time-stamps are related to system start time, don't take time-of-day
+            microseconds = 0;
+#endif
 	        microseconds %= (24LLU * 60LLU * 60LLU * 1000LLU * 1000LLU);
 	        [textTimestamp appendFormat:@"%2llu:",microseconds / (60LLU * 60LLU * 1000LLU * 1000LLU)];
 	        microseconds %= (60LLU * 60LLU * 1000LLU * 1000LLU);
