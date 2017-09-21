@@ -4,7 +4,7 @@
 //  Wrapper for libPCBUSB
 //
 //  Created by Uwe Vogt on 18.08.13.
-//  Copyright (c) 2013 UV Software. All rights reserved.
+//  Copyright (c) 2013-2017 UV Software. All rights reserved.
 //
 
 #include "PCBUSB.h"
@@ -23,6 +23,11 @@ typedef TPCANStatus (*CAN_FilterMessages_t)(TPCANHandle Channel, DWORD FromID, D
 typedef TPCANStatus (*CAN_GetValue_t)(TPCANHandle Channel, TPCANParameter Parameter, void* Buffer, DWORD BufferLength);
 typedef TPCANStatus (*CAN_SetValue_t)(TPCANHandle Channel, TPCANParameter Parameter, void* Buffer, DWORD BufferLength);
 typedef TPCANStatus (*CAN_GetErrorText_t)(TPCANStatus Error, WORD Language, char* Buffer);
+#ifndef CAN_2_0_ONLY
+typedef TPCANStatus (*CAN_InitializeFD_t)(TPCANHandle Channel, TPCANBitrateFD BitrateFD);
+typedef TPCANStatus (*CAN_ReadFD_t)(TPCANHandle Channel, TPCANMsgFD* MessageBuffer, TPCANTimestampFD* TimestampBuffer);
+typedef TPCANStatus (*CAN_WriteFD_t)(TPCANHandle Channel, TPCANMsgFD* MessageBuffer);
+#endif
 
 static CAN_Initialize_t _CAN_Initialize = NULL;
 static CAN_Uninitialize_t _CAN_Uninitialize = NULL;
@@ -34,6 +39,11 @@ static CAN_FilterMessages_t _CAN_FilterMessages = NULL;
 static CAN_GetValue_t _CAN_GetValue = NULL;
 static CAN_SetValue_t _CAN_SetValue = NULL;
 static CAN_GetErrorText_t _CAN_GetErrorText = NULL;
+#ifndef CAN_2_0_ONLY
+static CAN_InitializeFD_t _CAN_InitializeFD = NULL;
+static CAN_ReadFD_t _CAN_ReadFD = NULL;
+static CAN_WriteFD_t _CAN_WriteFD = NULL;
+#endif
 
 static void *hLibrary = NULL;
 
@@ -63,6 +73,14 @@ static int LoadLibrary(void)
             goto err;
         if((_CAN_GetErrorText = (CAN_GetErrorText_t)dlsym(hLibrary, "CAN_GetErrorText")) == NULL)
             goto err;
+#ifndef CAN_2_0_ONLY
+        if((_CAN_InitializeFD = (CAN_InitializeFD_t)dlsym(hLibrary, "CAN_InitializeFD")) == NULL)
+            goto err;
+        if((_CAN_ReadFD = (CAN_ReadFD_t)dlsym(hLibrary, "CAN_ReadFD")) == NULL)
+            goto err;
+        if((_CAN_WriteFD = (CAN_WriteFD_t)dlsym(hLibrary, "CAN_WriteFD")) == NULL)
+            goto err;
+#endif
     }
     return 0;
 err:
@@ -76,6 +94,11 @@ err:
     _CAN_GetValue = NULL;
     _CAN_SetValue = NULL;
     _CAN_GetErrorText = NULL;
+#ifndef CAN_2_0_ONLY
+    _CAN_InitializeFD = NULL;
+    _CAN_ReadFD = NULL;
+    _CAN_WriteFD = NULL;
+#endif
     dlclose(hLibrary);
     return -1;
 }
@@ -183,3 +206,34 @@ TPCANStatus CAN_GetErrorText(TPCANStatus Error, WORD Language, char* Buffer)
 		return PCAN_ERROR_UNKNOWN;
 }
 
+#ifndef CAN_2_0_ONLY
+TPCANStatus CAN_InitializeFD(TPCANHandle Channel, TPCANBitrateFD BitrateFD)
+{
+    if(LoadLibrary() != 0)
+        return PCAN_ERROR_NODRIVER;
+	if(_CAN_InitializeFD)
+		return _CAN_InitializeFD(Channel, BitrateFD);
+	else
+		return PCAN_ERROR_UNKNOWN;
+}
+
+TPCANStatus CAN_ReadFD(TPCANHandle Channel, TPCANMsgFD* MessageBuffer, TPCANTimestampFD* TimestampBuffer)
+{
+    if(LoadLibrary() != 0)
+        return PCAN_ERROR_NODRIVER;
+	if(_CAN_ReadFD)
+		return _CAN_ReadFD(Channel, MessageBuffer, TimestampBuffer);
+	else
+		return PCAN_ERROR_UNKNOWN;
+}
+
+TPCANStatus CAN_WriteFD(TPCANHandle Channel, TPCANMsgFD* MessageBuffer)
+{
+    if(LoadLibrary() != 0)
+        return PCAN_ERROR_NODRIVER;
+	if(_CAN_WriteFD)
+		return _CAN_WriteFD(Channel, MessageBuffer);
+	else
+		return PCAN_ERROR_UNKNOWN;
+}
+#endif
