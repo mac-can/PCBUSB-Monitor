@@ -141,13 +141,13 @@ const struct {
         char errorText[256] = "(unknown)";
         (void)CAN_GetErrorText(result, 0x00, errorText);
         
-        NSString *string = [NSString stringWithFormat:@"Not connected - Error %04lx: %s",result,errorText];
+        NSString *string = [NSString stringWithFormat:@"Not connected - Error %04x: %s",result,errorText];
         [outputStatus setStringValue:string];
         NSLog(@"%@",string);
         
         hDevice = PCAN_NONEBUS;
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Interface could not be connected." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04lx: %s",result,errorText];
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Interface could not be connected." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",result,errorText];
         [alert setAlertStyle:NSCriticalAlertStyle];
         [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
     }
@@ -195,7 +195,7 @@ const struct {
         char errorText[256] = "(unknown)";
         (void)CAN_GetErrorText(status, 0x00, errorText);
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Information could not be read." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04lx: %s",status,errorText];
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Information could not be read." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",status,errorText];
         [alert setAlertStyle:NSCriticalAlertStyle];
         [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
     }
@@ -355,14 +355,14 @@ const struct {
 	        CANMessage *newMessage = [[CANMessage alloc] init];
 	        [newMessage setNumber:[NSString stringWithFormat:@"%llu",frameCounter++]];
 	        [newMessage setTimestamp:textTimestamp];
-	        [newMessage setIdentifier:[NSString stringWithFormat:@"%03lx",canMessage.ID]];
+	        [newMessage setIdentifier:[NSString stringWithFormat:@"%03x",canMessage.ID]];
 	        [newMessage setType:[NSString stringWithFormat:@"trm"]];
 	        [newMessage setData:textData];
 	        [newMessage setAscii:textAscii];
 	        [arrayController addObject:newMessage];
             
 	        NSMutableString *stringOutput = [NSMutableString stringWithCapacity:(4)+(3*8)];
-            [stringOutput appendFormat:@"%03lx%c",canMessage.ID,(0 < canMessage.LEN)? ' ' : 0];
+            [stringOutput appendFormat:@"%03x%c",canMessage.ID,(0 < canMessage.LEN)? ' ' : 0];
             [stringOutput appendString:textData];
             [comboMessage insertItemWithObjectValue:stringOutput atIndex:0];
             [textMessage setStringValue:@""];
@@ -376,7 +376,7 @@ const struct {
             char errorText[256] = "(unknown)";
             (void)CAN_GetErrorText(status, 0x00, errorText);
             
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Message could not be sent." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04lx: %s",status,errorText];
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Message could not be sent." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",status,errorText];
             [alert setAlertStyle:NSCriticalAlertStyle];
             [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
         }
@@ -485,7 +485,7 @@ const struct {
 	        CANMessage *newMessage = [[CANMessage alloc] init];
 	        [newMessage setNumber:[NSString stringWithFormat:@"%llu",frameCounter++]];
 	        [newMessage setTimestamp:textTimestamp];
-	        [newMessage setIdentifier:[NSString stringWithFormat:@"%03lx",canMessage.ID]];
+	        [newMessage setIdentifier:[NSString stringWithFormat:@"%03x",canMessage.ID]];
 	        [newMessage setType:textType];
 	        [newMessage setData:textData];
 	        [newMessage setAscii:textAscii];
@@ -554,7 +554,7 @@ const struct {
                 char errorText[256] = "(unknown)";
                 (void)CAN_GetErrorText(result = PCAN_ERROR_ILLHW, 0x00, errorText);
             
-                NSString *string = [NSString stringWithFormat:@"Connection to PCAN-USB%li lost - Error %04lx: %s",indexInterface+1,result,errorText];
+                NSString *string = [NSString stringWithFormat:@"Connection to PCAN-USB%li lost - Error %04x: %s",indexInterface+1,result,errorText];
                 [outputStatus setStringValue:string];
                 NSLog(@"%@",string);
             }
