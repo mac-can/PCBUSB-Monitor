@@ -150,11 +150,6 @@ const struct {
         
         return;
     }
-    if([checkboxLog state] == NSOnState)
-    {
-        result = CAN_SetValue(PCAN_NONEBUS, PCAN_EXT_LOG_USB, NULL, 0);
-        NSLog(@"Logging %s",result? "not possible" : "enabled");
-    }
     if((result = CAN_Initialize(PCAN_USBBUS1 + (TPCANHandle)indexInterface, gBaudrate[indexBaudrate].btr0btr1, 0, 0, 0)) == PCAN_ERROR_OK)
     {
         receiveTimer = [NSTimer timerWithTimeInterval:0.020 target:self selector:@selector(receiveTick:) userInfo:nil repeats:YES];
@@ -165,6 +160,15 @@ const struct {
         NSLog(@"%@",string);
         
         hDevice = PCAN_USBBUS1 + (TPCANHandle)indexInterface;
+
+        if([checkboxLog state] == NSOnState)
+        {
+            BYTE value = TRACE_FILE_SINGLE | TRACE_FILE_DATE | TRACE_FILE_TIME;
+            (void)CAN_SetValue(hDevice, PCAN_TRACE_CONFIGURE, (void*)&value, sizeof(value));
+            value = PCAN_PARAMETER_ON;
+            result = CAN_SetValue(hDevice, PCAN_TRACE_STATUS, (void*)&value, sizeof(value));
+            NSLog(@"Tracing %s",result? "not possible" : "enabled");
+        }
     }
     else
     {
