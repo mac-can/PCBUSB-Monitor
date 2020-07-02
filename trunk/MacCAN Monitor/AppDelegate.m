@@ -120,6 +120,36 @@ const struct {
     
     [self endConnectSheet:sender];
 
+    char version[256] = "PCBUSB library, version 0.0.0.0 for macOS (x86_64)";
+    if((result = CAN_GetValue(PCAN_NONEBUS, PCAN_EXT_SOFTWARE_VERSION, (void*)version, 256)) != PCAN_ERROR_OK)
+    {
+        char errorText[256] = "(unknown)";
+        (void)CAN_GetErrorText(result, 0x00, errorText);
+        
+        NSString *string = [NSString stringWithFormat:@"Fatal error %04x: %s",result,errorText];
+        [outputStatus setStringValue:string];
+        NSLog(@"%@",string);
+        
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Something went terribly wrong!" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",result,errorText];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
+        
+        return;
+    }
+    unsigned int major = 0, minor = 0;
+    sscanf(version, "PCBUSB library, version %u.%u", &major, &minor);
+    if((major != 0) || (minor < 9))
+    {
+        NSString *string = [NSString stringWithFormat:@"Library version %u.%u loaded - Incompatible",major,minor];
+        [outputStatus setStringValue:string];
+        NSLog(@"%@",string);
+        
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Incompatible library version." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error X: Library version 0.9 or higher required"];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
+        
+        return;
+    }
     if([checkboxLog state] == NSOnState)
     {
         result = CAN_SetValue(PCAN_NONEBUS, PCAN_EXT_LOG_USB, NULL, 0);
