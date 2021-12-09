@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -647,7 +647,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="141" y="154"/>
+            <point key="canvasLocation" x="139" y="135"/>
         </menu>
         <window title="MacCAN Monitor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -662,11 +662,11 @@
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="608">
                         <rect key="frame" x="20" y="52" width="706" height="438"/>
                         <clipView key="contentView" id="MH6-vq-JCE">
-                            <rect key="frame" x="1" y="0.0" width="704" height="437"/>
+                            <rect key="frame" x="1" y="1" width="704" height="436"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="612" id="614">
-                                    <rect key="frame" x="0.0" y="0.0" width="704" height="414"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="704" height="413"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -678,7 +678,7 @@
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="621">
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -693,7 +693,7 @@
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="622">
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -708,7 +708,7 @@
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="623">
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -723,7 +723,7 @@
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="624">
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -738,7 +738,7 @@
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="625">
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -747,13 +747,13 @@
                                                 <binding destination="683" name="value" keyPath="arrangedObjects.data" id="697"/>
                                             </connections>
                                         </tableColumn>
-                                        <tableColumn width="198" minWidth="10" maxWidth="3.4028234663852886e+38" id="615">
+                                        <tableColumn width="189" minWidth="10" maxWidth="3.4028234663852886e+38" id="615">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Data (ASCII)">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="626">
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -767,14 +767,14 @@
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="613">
-                            <rect key="frame" x="1" y="287" width="732" height="15"/>
+                            <rect key="frame" x="1" y="421" width="704" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="611">
                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <tableHeaderView key="headerView" id="612">
+                        <tableHeaderView key="headerView" wantsLayer="YES" id="612">
                             <rect key="frame" x="0.0" y="0.0" width="704" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
@@ -785,7 +785,7 @@
                             <constraint firstAttribute="width" constant="668" id="777"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not connected" id="610">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -813,16 +813,22 @@
             <toolbar key="toolbar" implicitIdentifier="BF87092F-4922-4BE4-907A-231A34CA050F" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="602">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="63138F39-C700-4DC1-BC52-04F3058C9C92" label="Info" paletteLabel="Info" tag="-1" image="icon_info" id="702">
+                        <size key="minSize" width="22" height="22"/>
+                        <size key="maxSize" width="22" height="22"/>
                         <connections>
                             <action selector="showInfo:" target="494" id="706"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="DC9E26FF-23D1-44C3-97ED-7A05A0C34BFD" label="Send Message..." paletteLabel="Send Message..." tag="-1" image="icon_send" id="703">
+                        <size key="minSize" width="22" height="22"/>
+                        <size key="maxSize" width="22" height="22"/>
                         <connections>
                             <action selector="showTransmitSheet:" target="494" id="707"/>
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="EA593A29-9B8D-4362-BC8E-A9959D39B0F4" label="Clear View" paletteLabel="Clear View" tag="-1" image="icon_clear" id="704">
+                        <size key="minSize" width="22" height="22"/>
+                        <size key="maxSize" width="22" height="22"/>
                         <connections>
                             <action selector="clearView:" target="494" id="705"/>
                         </connections>
@@ -842,7 +848,7 @@
                     <toolbarItem reference="704"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="141" y="-224"/>
+            <point key="canvasLocation" x="139" y="-230"/>
         </window>
         <window title="Connect" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" visibleAtLaunch="NO" animationBehavior="default" id="536" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
@@ -859,7 +865,7 @@
                             <constraint firstAttribute="width" constant="61" id="558"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Interface" id="549">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -867,7 +873,7 @@
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="545">
                         <rect key="frame" x="99" y="105" width="65" height="16"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Baud rate" id="550">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -878,7 +884,7 @@
                             <constraint firstAttribute="width" constant="96" id="561"/>
                         </constraints>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="551">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </comboBoxCell>
@@ -886,29 +892,29 @@
                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="543">
                         <rect key="frame" x="176" y="99" width="99" height="25"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="552">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </comboBoxCell>
                     </comboBox>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="542">
-                        <rect key="frame" x="170" y="12" width="108" height="32"/>
+                        <rect key="frame" x="169" y="12" width="110" height="32"/>
                         <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="553">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="connectInterface:" target="494" id="601"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="541">
-                        <rect key="frame" x="60" y="12" width="108" height="32"/>
+                        <rect key="frame" x="59" y="12" width="110" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="96" id="557"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="554">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -929,16 +935,16 @@ Gw
                         <rect key="frame" x="101" y="83" width="171" height="5"/>
                     </box>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="539">
-                        <rect key="frame" x="174" y="61" width="100" height="18"/>
-                        <buttonCell key="cell" type="check" title="Write to file" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="555">
+                        <rect key="frame" x="174" y="60" width="98" height="18"/>
+                        <buttonCell key="cell" type="check" title="Log to file" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="555">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="538">
-                        <rect key="frame" x="99" y="62" width="65" height="16"/>
+                        <rect key="frame" x="99" y="61" width="65" height="16"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Option" id="556">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -973,7 +979,7 @@ Gw
                     <constraint firstItem="547" firstAttribute="top" secondItem="537" secondAttribute="top" constant="18" id="587"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="141" y="-729"/>
+            <point key="canvasLocation" x="112" y="-712"/>
         </window>
         <window title="Transmit" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" visibleAtLaunch="NO" animationBehavior="default" id="655" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
@@ -985,26 +991,26 @@ Gw
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="657">
-                        <rect key="frame" x="175" y="12" width="108" height="32"/>
+                        <rect key="frame" x="174" y="12" width="110" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="96" id="674"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Transmit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="664">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="transmitMessage:" target="494" id="678"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="658">
-                        <rect key="frame" x="61" y="12" width="108" height="32"/>
+                        <rect key="frame" x="60" y="12" width="110" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="96" id="675"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="663">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -1016,7 +1022,7 @@ Gw
                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="660">
                         <rect key="frame" x="20" y="81" width="260" height="25"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="661">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </comboBoxCell>
@@ -1027,7 +1033,7 @@ Gw
                             <constraint firstAttribute="width" constant="143" id="676"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ID (hex)  Data (hex)" id="662">
-                            <font key="font" metaFont="label" size="13"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -1045,7 +1051,7 @@ Gw
                     <constraint firstItem="660" firstAttribute="top" secondItem="656" secondAttribute="top" constant="20" symbolic="YES" id="673"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="142" y="-984"/>
+            <point key="canvasLocation" x="86" y="-976"/>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>

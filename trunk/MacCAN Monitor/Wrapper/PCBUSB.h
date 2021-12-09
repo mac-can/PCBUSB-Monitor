@@ -1,49 +1,49 @@
-/* -- $HeadURL: https://svn.uv-software.net/MacCAN/PCANUSB/Library/trunk/drv/pcan_api.h $ --
+/* -- $HeadURL: https://uv-software.net/MacCAN/PCANUSB/Library/trunk/drv/pcan_api.h $ --
  *
- *	project   :  CAN - Controller Area Network
+ *  project   :  CAN - Controller Area Network
  *
- *	purpose   :  PCAN Application Programming Interface
+ *  purpose   :  PCAN Application Programming Interface
  *
- *	copyright :  (C) 2012-2020 by UV Software, Berlin
+ *  copyright :  (C) 2012-2021 by UV Software, Berlin
  *
- *	compiler  :  Apple clang version 11.0.3 (clang-1103.0.32.62)
+ *  compiler  :  Apple clang version 12.0.5 (clang-1205.0.22.9)
  *
- *	export    :  TPCANStatus CAN_Initialize(TPCANHandle Channel, TPCANBaudrate Btr0Btr1, TPCANType HwType, DWORD IOPort, WORD Interrupt);
- *	             TPCANStatus CAN_Uninitialize(TPCANHandle Channel);
- *	             TPCANStatus CAN_Reset(TPCANHandle Channel);
- *	             TPCANStatus CAN_GetStatus(TPCANHandle Channel);
- *	             TPCANStatus CAN_Read(TPCANHandle Channel, TPCANMsg* MessageBuffer, TPCANTimestamp* TimestampBuffer);
- *	             TPCANStatus CAN_Write(TPCANHandle Channel, TPCANMsg* MessageBuffer);
- *	             TPCANStatus CAN_FilterMessages(TPCANHandle Channel, DWORD FromID, DWORD ToID, TPCANMode Mode);
- *	             TPCANStatus CAN_GetValue(TPCANHandle Channel, TPCANParameter Parameter, void* Buffer, DWORD BufferLength);
- *	             TPCANStatus CAN_SetValue(TPCANHandle Channel, TPCANParameter Parameter, void* Buffer, DWORD BufferLength);
- *	             TPCANStatus CAN_GetErrorText(TPCANStatus Error, WORD Language, LPSTR Buffer);
- *	             *** CAN FD capable devices ***
- *	             TPCANStatus CAN_InitializeFD(TPCANHandle Channel, TPCANBitrateFD BitrateFD);
- *	             TPCANStatus CAN_ReadFD(TPCANHandle Channel, TPCANMsgFD* MessageBuffer, TPCANTimestampFD* TimestampBuffer);
- *	             TPCANStatus CAN_WriteFD(TPCANHandle Channel, TPCANMsgFD* MessageBuffer);
+ *  export    :  TPCANStatus CAN_Initialize(TPCANHandle Channel, TPCANBaudrate Btr0Btr1, TPCANType HwType, DWORD IOPort, WORD Interrupt);
+ *               TPCANStatus CAN_Uninitialize(TPCANHandle Channel);
+ *               TPCANStatus CAN_Reset(TPCANHandle Channel);
+ *               TPCANStatus CAN_GetStatus(TPCANHandle Channel);
+ *               TPCANStatus CAN_Read(TPCANHandle Channel, TPCANMsg* MessageBuffer, TPCANTimestamp* TimestampBuffer);
+ *               TPCANStatus CAN_Write(TPCANHandle Channel, TPCANMsg* MessageBuffer);
+ *               TPCANStatus CAN_FilterMessages(TPCANHandle Channel, DWORD FromID, DWORD ToID, TPCANMode Mode);
+ *               TPCANStatus CAN_GetValue(TPCANHandle Channel, TPCANParameter Parameter, void* Buffer, DWORD BufferLength);
+ *               TPCANStatus CAN_SetValue(TPCANHandle Channel, TPCANParameter Parameter, void* Buffer, DWORD BufferLength);
+ *               TPCANStatus CAN_GetErrorText(TPCANStatus Error, WORD Language, LPSTR Buffer);
+ *               *** CAN FD capable devices ***
+ *               TPCANStatus CAN_InitializeFD(TPCANHandle Channel, TPCANBitrateFD BitrateFD);
+ *               TPCANStatus CAN_ReadFD(TPCANHandle Channel, TPCANMsgFD* MessageBuffer, TPCANTimestampFD* TimestampBuffer);
+ *               TPCANStatus CAN_WriteFD(TPCANHandle Channel, TPCANMsgFD* MessageBuffer);
  *
- *	includes  :  (none)
+ *  includes  :  (none)
  *
- *	author    :  Uwe Vogt, UV Software
+ *  author    :  Uwe Vogt, UV Software
  *
- *	e-mail    :  uwe.vogt@uv-software.de
+ *  e-mail    :  uwe.vogt@uv-software.de
  *
  *
- *	-----------  description  --------------------------------------------
+ *  -----------  description  --------------------------------------------
  *
- *	PCAN API  -  PEAK CAN Application Programming Interface
+ *  PCAN API  -  PEAK CAN Application Programming Interface
  *
- *	This Application Programming Interface (API) is a nearly compatible
- *	implementation of the PEAK PCANBasic DLL on macOS (Darwin Kernel 19.x.x).
+ *  This Application Programming Interface (API) is an almost compatible
+ *  implementation of the PEAK PCANBasic DLL on macOS (x86_64 architecture).
  *
- *	Supported CAN Interfaces:
- *	- PCAN-USB
- *	- PCAN-USB FD
- *	Up to 8 devices are supported.
+ *  Supported CAN Interfaces:
+ *  - PCAN-USB
+ *  - PCAN-USB FD
+ *  Up to 8 devices are supported.
  *
- *	Version of PCAN API:
- *	- Based on PEAK's version of 10/28/2019
+ *  Version of PCAN API:
+ *  - Based on PEAK's version of 10/15/2020
  */
 
 #ifndef PCAN_API_H_INCLUDED
@@ -61,20 +61,21 @@
 
 #ifdef __APPLE__
 #ifndef BYTE
-#define BYTE	UInt8
+#define BYTE    UInt8
 #endif
 #ifndef WORD
-#define WORD	UInt16
+#define WORD    UInt16
 #endif
 #ifndef DWORD
-#define DWORD	UInt32
+#define DWORD   UInt32
 #endif
 #ifndef UINT64
-#define UINT64	UInt64
+#define UINT64  UInt64
 #endif
 #ifndef LPSTR
-#define LPSTR	char*
+#define LPSTR   char*
 #endif
+#define __T(s)  s
 #endif
 
 /* Defined and supported PCAN channels
@@ -202,7 +203,7 @@
 
 /* DEPRECATED parameters
  */
-#define PCAN_DEVICE_NUMBER       PCAN_DEVICE_ID  //!< Deprecated parameter. Use PCAN_DEVICE_ID instead 
+#define PCAN_DEVICE_NUMBER       PCAN_DEVICE_ID  //!< Deprecated parameter. Use PCAN_DEVICE_ID instead
 
 /* PCAN parameter values
  */
@@ -241,7 +242,7 @@
  */
 #define MAX_LENGTH_HARDWARE_NAME   33   //!< Maximum length of the name of a device: 32 characters + terminator
 #define MAX_LENGTH_VERSION_STRING  18   //!< Maximum length of a version string: 17 characters + terminator
-								      
+
 /* PCAN message types
  */
 #define PCAN_MESSAGE_STANDARD    0x00U  //!< The PCAN message is a CAN Standard Frame (11-bit identifier)
@@ -252,6 +253,13 @@
 #define PCAN_MESSAGE_ESI         0x10U  //!< The PCAN message represents a FD error state indicator(CAN FD transmitter was error active)
 #define PCAN_MESSAGE_ERRFRAME    0x40U  //!< The PCAN message represents an error frame
 #define PCAN_MESSAGE_STATUS      0x80U  //!< The PCAN message represents a PCAN status message
+
+/* LookUp Parameters
+ */
+#define LOOKUP_DEVICE_TYPE        __T("devicetype")       //!< Lookup channel by Device type (see PCAN devices e.g. PCAN_USB)
+#define LOOKUP_DEVICE_ID          __T("deviceid")         //!< Lookup channel by device id
+#define LOOKUP_CONTROLLER_NUMBER  __T("controllernumber") //!< Lookup channel by CAN controller 0-based index
+#define LOOKUP_IP_ADDRESS         __T("ipaddress")        //!< Lookup channel by IP address (LAN channels only)
 
 /* Frame Type / Initialization Mode
  */
@@ -343,6 +351,19 @@ typedef struct tagTPCANMsgFD
     BYTE              DATA[64];//!< Data of the message (DATA[0]..DATA[63])
 } TPCANMsgFD;
 
+/** Describes an available PCAN channel
+ */
+typedef struct tagTPCANChannelInformation
+{
+    TPCANHandle channel_handle;                 //!< PCAN channel handle
+    TPCANDevice device_type;                    //!< Kind of PCAN device
+    BYTE controller_number;                     //!< CAN-Controller number
+    DWORD device_features;                      //!< Device capabilities flag (see FEATURE_*)
+    char device_name[MAX_LENGTH_HARDWARE_NAME]; //!< Device name
+    DWORD device_id;                            //!< Device number
+    DWORD channel_condition;                    //!< Availability status of a PCAN-Channel
+}TPCANChannelInformation;
+
 
 /*  -----------  variables  ----------------------------------------------
  */
@@ -372,31 +393,31 @@ TPCANStatus CAN_Initialize(
         TPCANHandle Channel,
         TPCANBaudrate Btr0Btr1,
         TPCANType HwType _DEF_ARG,
-		DWORD IOPort _DEF_ARG,
-		WORD Interrupt _DEF_ARG);
+        DWORD IOPort _DEF_ARG,
+        WORD Interrupt _DEF_ARG);
 
 /** @brief       Initializes a FD capable PCAN Channel.
  *
  *  @param[in]   Channel    The handle of a FD capable PCAN Channel.
- *	@param[in]   BitrateFD  The speed for the communication (FD bit rate string).
+ *  @param[in]   BitrateFD  The speed for the communication (FD bit rate string).
  *
- *	@note        See PCAN_BR_* values
- *	             <ul>
- *	              <li>Parameter and values must be separated by '='.</li>
- *	              <li>Couples of Parameter/value must be separated by ','.</li>
- *	              <li>Following Parameter must be filled out: f_clock, data_brp, data_sjw, data_tseg1,
- *	                  data_tseg2, nom_brp, nom_sjw, nom_tseg1, nom_tseg2.</li>
- *	              <li>Following Parameters are optional (not used yet): data_ssp_offset, nom_sam.</li>
- *	             </ul>
- *	@note        Example:
- *	@verbatim
- *	             f_clock=80000000,nom_brp=10,nom_tseg1=5,nom_tseg2=2,nom_sjw=1,data_brp=4,data_tseg1=7,data_tseg2=2,data_sjw=1
- *	@endverbatim
+ *  @note        See PCAN_BR_* values
+ *               <ul>
+ *                <li>Parameter and values must be separated by '='.</li>
+ *                <li>Couples of Parameter/value must be separated by ','.</li>
+ *                <li>Following Parameter must be filled out: f_clock, data_brp, data_sjw, data_tseg1,
+ *                    data_tseg2, nom_brp, nom_sjw, nom_tseg1, nom_tseg2.</li>
+ *                <li>Following Parameters are optional (not used yet): data_ssp_offset, nom_sam.</li>
+ *               </ul>
+ *  @note        Example:
+ *  @verbatim
+ *               f_clock=80000000,nom_brp=10,nom_tseg1=5,nom_tseg2=2,nom_sjw=1,data_brp=4,data_tseg1=7,data_tseg2=2,data_sjw=1
+ *  @endverbatim
  *  @returns     A TPCANStatus error code.
  */
 TPCANStatus CAN_InitializeFD(
-		TPCANHandle Channel,
-		TPCANBitrateFD BitrateFD);
+        TPCANHandle Channel,
+        TPCANBitrateFD BitrateFD);
 
 /** @brief       Uninitializes one or all PCAN Channels initialized by CAN_Initialize.
  *
@@ -453,9 +474,9 @@ TPCANStatus CAN_Read(
  *  @returns     A TPCANStatus error code.
  */
 TPCANStatus CAN_ReadFD(
-		TPCANHandle Channel,
-		TPCANMsgFD* MessageBuffer,
-		TPCANTimestampFD* TimestampBuffer);
+        TPCANHandle Channel,
+        TPCANMsgFD* MessageBuffer,
+        TPCANTimestampFD* TimestampBuffer);
 
 /** @brief       Transmits a CAN message.
  *
@@ -476,8 +497,8 @@ TPCANStatus CAN_Write(
  *  @returns     A TPCANStatus error code.
  */
 TPCANStatus CAN_WriteFD(
-		TPCANHandle Channel,
-		TPCANMsgFD* MessageBuffer);
+        TPCANHandle Channel,
+        TPCANMsgFD* MessageBuffer);
 
 /** @brief       Configures the reception filter.
  *
@@ -532,7 +553,7 @@ TPCANStatus CAN_SetValue(
         TPCANHandle Channel,
         TPCANParameter Parameter,
         void* Buffer,
-		DWORD BufferLength);
+        DWORD BufferLength);
 
 /** @brief       Returns a descriptive text of a given TPCANStatus error code, in any desired language.
  *
@@ -550,13 +571,25 @@ TPCANStatus CAN_GetErrorText(
         WORD Language,
         LPSTR Buffer);
 
+/** @brief       Finds a PCAN-Basic channel that matches with the given parameters
+ *
+ *  @param[in]   Parameters    A comma separated string contained pairs of parameter-name/value
+ *                             to be matched within a PCAN-Basic channel
+ *  @param[out]  FoundChannel  Buffer for returning the PCAN-Basic channel, when found
+ *
+ *  @returns     A TPCANStatus error code.
+ */
+TPCANStatus CAN_LookUpChannel(
+        LPSTR Parameters,
+        TPCANHandle* FoundChannel);
+
 #ifdef __cplusplus
 }
 #endif
-#endif	/* PCAN_API_H_INCLUDED */
+#endif  /* PCAN_API_H_INCLUDED */
 
-/*	----------------------------------------------------------------------
- *	Uwe Vogt,  UV Software,  Chausseestrasse 33 A,  10115 Berlin,  Germany
- *	Tel.: +49-30-46799872,  Fax: +49-30-46799873,  Mobile: +49-170-3801903
- *	E-Mail: uwe.vogt@uv-software.de,  Homepage: http://www.uv-software.de/
+/*  ----------------------------------------------------------------------
+ *  Uwe Vogt,  UV Software,  Chausseestrasse 33 A,  10115 Berlin,  Germany
+ *  Tel.: +49-30-46799872,  Fax: +49-30-46799873,  Mobile: +49-170-3801903
+ *  E-Mail: uwe.vogt@uv-software.de,  Homepage: http://www.uv-software.de/
  */

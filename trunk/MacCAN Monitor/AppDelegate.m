@@ -1,22 +1,9 @@
 //
-//  MacCAN Monitor - CAN Monitor App for macOS
+//  AppDelegate.m
+//  MacCAN Monitor
 //
-//  Copyright (C) 2013-2020  Uwe Vogt, UV Software, Berlin (info@mac-can.com)
-//
-//  This file is part of MacCAN Monitor.
-//
-//  MacCAN Monitor is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  MacCAN Monitor is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with MacCAN Monitor.  If not, see <https://www.gnu.org/licenses/>.
+//  Created by Uwe Vogt on 18.08.13.
+//  Copyright (c) 2013 UV Software. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -82,7 +69,7 @@ const struct {
     [comboBaudrate selectItemAtIndex:indexBaudrate];
     [comboBaudrate setEditable:NO];
     
-    [checkboxLog setState:NSOffState];
+    [checkboxLog setState:NSControlStateValueOff];
     
     modeTimestamp = TIME_ZERO;
     firstTimestamp = true;
@@ -143,10 +130,13 @@ const struct {
         [outputStatus setStringValue:string];
         NSLog(@"%@",string);
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Something went terribly wrong!" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",result,errorText];
-        [alert setAlertStyle:NSCriticalAlertStyle];
-        [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
-        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Something went terribly wrong!"];
+        [alert setInformativeText:[NSString stringWithFormat:@"Error %04x: %s",result,errorText]];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setAlertStyle:NSAlertStyleCritical];
+        [alert beginSheetModalForWindow:_window completionHandler:nil];
+
         return;
     }
     unsigned int major = 0, minor = 0;
@@ -157,10 +147,13 @@ const struct {
         [outputStatus setStringValue:string];
         NSLog(@"%@",string);
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Incompatible library version." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error X: Library version 0.9 or higher required"];
-        [alert setAlertStyle:NSCriticalAlertStyle];
-        [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
-        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Incompatible library version."];
+        [alert setInformativeText:[NSString stringWithFormat:@"error X: Library version 0.9 or higher required."]];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setAlertStyle:NSAlertStyleCritical];
+        [alert beginSheetModalForWindow:_window completionHandler:nil];
+
         return;
     }
     if((result = CAN_Initialize(PCAN_USBBUS1 + (TPCANHandle)indexInterface, gBaudrate[indexBaudrate].btr0btr1, 0, 0, 0)) == PCAN_ERROR_OK)
@@ -174,7 +167,7 @@ const struct {
         
         hDevice = PCAN_USBBUS1 + (TPCANHandle)indexInterface;
 
-        if([checkboxLog state] == NSOnState)
+        if([checkboxLog state] == NSControlStateValueOn)
         {
             BYTE value = TRACE_FILE_SINGLE | TRACE_FILE_DATE | TRACE_FILE_TIME;
             (void)CAN_SetValue(hDevice, PCAN_TRACE_CONFIGURE, (void*)&value, sizeof(value));
@@ -188,15 +181,18 @@ const struct {
         char errorText[256] = "(unknown)";
         (void)CAN_GetErrorText(result, 0x00, errorText);
         
-        NSString *string = [NSString stringWithFormat:@"Not connected - Error %04x: %s",result,errorText];
+        NSString *string = [NSString stringWithFormat:@"Not connected - error %04x: %s",result,errorText];
         [outputStatus setStringValue:string];
         NSLog(@"%@",string);
         
         hDevice = PCAN_NONEBUS;
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Interface could not be connected." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",result,errorText];
-        [alert setAlertStyle:NSCriticalAlertStyle];
-        [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Interface could not be connected."];
+        [alert setInformativeText:[NSString stringWithFormat:@"Error %04x: %s",result,errorText]];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setAlertStyle:NSAlertStyleCritical];
+        [alert beginSheetModalForWindow:_window completionHandler:nil];
     }
 }
 
@@ -229,22 +225,28 @@ const struct {
             case PCAN_BAUD_5K: strcpy(baudrate, "5"); break;
             default: strcpy(baudrate, "???"); break;
         }
-        NSAlert *alert = [NSAlert alertWithMessageText:@"MacCAN Monitor using libPCBUSB" defaultButton:@"OK" alternateButton:nil otherButton:nil
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"MacCAN Monitor using libPCBUSB"];
+        [alert addButtonWithTitle:@"OK"];
 #ifdef _SHOW_INFO_BAUDRATE
-                             informativeTextWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s\nBaud rate:\n   %s kBit/s (Btr0Btr1 = 0x%04x)",hardware,software,baudrate,btr0btr1];
+        [alert setInformativeText:[NSString stringWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s\nBaud rate:\n   %s kBit/s (Btr0Btr1 = 0x%04x)",hardware,software,baudrate,btr0btr1]];
 #else
-    informativeTextWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s",hardware,software];
+        [alert setInformativeText:[NSString stringWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s",hardware,software]];
 #endif
-        [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
+        [alert beginSheetModalForWindow:_window completionHandler:nil];
     }
     else
     {
         char errorText[256] = "(unknown)";
         (void)CAN_GetErrorText(status, 0x00, errorText);
         
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Information could not be read." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",status,errorText];
-        [alert setAlertStyle:NSCriticalAlertStyle];
-        [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Information could not be read."];
+        [alert setInformativeText:[NSString stringWithFormat:@"Error %04x: %s",status,errorText]];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setAlertStyle:NSAlertStyleCritical];
+        [alert beginSheetModalForWindow:_window completionHandler:nil];
     }
 }
 
@@ -423,9 +425,12 @@ const struct {
             char errorText[256] = "(unknown)";
             (void)CAN_GetErrorText(status, 0x00, errorText);
             
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Message could not be sent." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"error %04x: %s",status,errorText];
-            [alert setAlertStyle:NSCriticalAlertStyle];
-            [alert beginSheetModalForWindow:_window modalDelegate:self didEndSelector:nil contextInfo:nil];
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:@"Message could not be sent."];
+            [alert setInformativeText:[NSString stringWithFormat:@"Error %04x: %s",status,errorText]];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setAlertStyle:NSAlertStyleCritical];
+            [alert beginSheetModalForWindow:_window completionHandler:nil];
         }
     }
 }
@@ -601,7 +606,7 @@ const struct {
                 char errorText[256] = "(unknown)";
                 (void)CAN_GetErrorText(result = PCAN_ERROR_ILLHW, 0x00, errorText);
             
-                NSString *string = [NSString stringWithFormat:@"Connection to PCAN-USB%li lost - Error %04x: %s",indexInterface+1,result,errorText];
+                NSString *string = [NSString stringWithFormat:@"Connection to PCAN-USB%li lost - error %04x: %s",indexInterface+1,result,errorText];
                 [outputStatus setStringValue:string];
                 NSLog(@"%@",string);
             }
