@@ -1,33 +1,73 @@
 # CAN Monitor App for macOS®
 
-_Copyright © 2013-2020 by UV Software, Berlin._
+_Copyright © 2013-2021 by UV Software, Berlin._
 
-The MacCAN Monitor App is a little demo program to show the functionally of the PCBUSB library: the macOS library for PCAN-USB interfaces.
-The program displays received CAN messages in a table view; its size is limited to 1024 rows. Furthermore it is possible to send single standard CAN messages with 0 to 8 data bytes.
-Only PCAN-USB devices from PEAK-System Technik GmbH are supported; and only the first channel of a device. The PCAN-USB interface number is taken from the IO registry.
-USB interface and CAN baud rate must be chosen once the program is started; they cannot be changed afterwards.
+The MacCAN Monitor App is a little demo program to show the functionally of the PCBUSB library:
+the [macOS® Library for PCAN-USB interfaces](https://www.mac-can.com/).
 
-## License
+## MacCAN Monitor App for PCAN-USB Interfaces
 
-This is free software, and you are welcome to redistribute it under certain conditions; see file LICENCE for details.
+The program displays received CAN messages in a table view.
+Furthermore it is possible to send single standard CAN messages with 0 to 8 data bytes.
 
-## System requirements
-- Supported architecture: i386 x86_64
-- Supported CAN interfaces: PCAN-USB
-- Required library: libPCBUSB.0.9.dylib
+**Limitations (Demo Program):**
 
-## Installation
-1. Download the PCBUSB library and run the install.sh script in a terminal session. Make sure that you have write permission to /usr/local folder.
-2. Download the MacCAN Monitor App or drag the program icon from the disk image to any folder you like (e.g. Programs).
+- CAN channel and CAN bit rate must be chosen once the program is started; they cannot be changed afterwards.
+- PCAN-USB FD devices can only be operated in CAN Classic mode (CAN 2.0).
+- The size of the table view is limited to 1024 rows.
+- The size of the trace file is limited to 100K frames.
 
-## Hazard note:
-_Do not connect your PCAN USB device to a real CAN network when using this program. This can damage your application._
 
-## References
-- Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries
-- PCAN is a registered trademark of PEAK-System Technik GmbH, Darmstadt
-- Toolbar icons by Oxygen Team; GNU Lesser General Public License
+### macOS® Library for PCAN-USB Interfaces
+
+The dynamic library libPCBUSB is running under macOS 10.13 and later (Intel architecture and Apple silicon).
+The API is almost compatible to PEAK´s PCANBasic DLL on Windows.
+See the [MacCAN](https://www.mac-can.com/) website to learn more.
+
+### Supported Devices
+
+Only the following devices from PEAK-System Technik are supported:
+- PCAN-USB (product code: IPEH-002021, IPEH-002022)
+- PCAN-USB FD (product code: IPEH-004022)
+
+### Required Library Version
+
+The minimum required library version is v0.9 (Build 902 of June 25, 2020).
+But _Latest is Greatest_.
+
+## Known Bugs and Caveats
+
+- For a list of known bugs and caveats see tab [Issues](https://github.com/mac-can/PCBUSB-Monitor/issues) in the GitHub repo.
+- For a list of known bugs and caveats in the underlying PCBUSB library read the documentation of the appropriated library version.
+- PCAN-USB Pro FD devices are supported since version 0.10 of the PCBUSB library, _but only the first channel_ (CAN1).
+- Apple´s M1 chip is supported since version 0.10.1 of the PCBUSB library (Universal macOS Binary).
+
+## This and That
+
+The PCBUSB library can be downloaded form the [MacCAN download server](https://www.uv-software.de/dokuwiki/doku.php?id=uvs:programs:pcbusb_library) (binaries only).
+Please note the copyright and license agreements.
+
+### License
+
+This work is licensed under the terms of the BSD 2-Clause "Simplified" License.
+
+`SPDX-License-Identifier: BSD-2-Clause`
+
+### Trademarks
+
+- Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries.
+- PCAN is a registered trademark of PEAK-System Technik GmbH, Darmstadt.
+- All other company, product and service names mentioned herein are trademarks, registered trademarks or service marks of their respective owners.
+
+### Credits
+
+- Toolbar icons by Oxygen Team (GNU Lesser General Public License)
+- Apple M1 support by Sebastião Beirão (https://github.com/sebashb)
+
+### Hazard Note
+
+_If you connect your CAN device to a real CAN network when using this program, you might damage your application._
 
 ## Contact
 mailto:info@mac-can.com \
-http://www.mac-can.com
+https://www.mac-can.com

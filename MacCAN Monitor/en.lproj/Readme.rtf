@@ -1,0 +1,172 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fswiss\fcharset0 Helvetica-Oblique;
+\f3\fnil\fcharset0 LucidaGrande;\f4\fnil\fcharset128 HiraginoSans-W3;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c100000\c0\c0;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid1\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{check\}}{\leveltext\leveltemplateid101\'01\uc0\u10003 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{check\}}{\leveltext\leveltemplateid201\'01\uc0\u10003 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid301\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{check\}}{\leveltext\leveltemplateid401\'01\uc0\u10003 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}
+{\list\listtemplateid7\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid601\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid7}
+{\list\listtemplateid8\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{check\}}{\leveltext\leveltemplateid701\'01\uc0\u10003 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid8}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}{\listoverride\listid7\listoverridecount0\ls7}{\listoverride\listid8\listoverridecount0\ls8}}
+\paperw11900\paperh16840\vieww24160\viewh15180\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\partightenfactor0
+
+\f0\b\fs36 \cf0 CAN Monitor App for macOS
+\fs24 \super \'ae\nosupersub \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 \
+
+\f2\i Copyright \'a9 2013-2021 by UV Software, Berlin.\
+All rights reserved.
+\f1\i0 \
+\
+The MacCAN Monitor App is a little demo program to show the functionally of the PCBUSB library: the macOS
+\fs20 \super \'ae
+\fs24 \nosupersub  Library for PCAN-USB interfaces.\
+\
+
+\f0\b\fs28 MacCAN Monitor App for PCAN-USB Interfaces
+\f1\b0\fs24 \
+\
+The program displays received CAN messages in a table view. Furthermore it is possible to send single standard CAN messages with 0 to 8 data bytes.\
+\
+
+\f0\b Limitations (Demo Program):
+\f1\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	
+\f3 \uc0\u9702 
+\f1 	}CAN channel and CAN bit rate must be chosen once the program is started; they cannot be changed afterwards.\
+{\listtext	
+\f3 \uc0\u9702 
+\f1 	}PCAN-USB FD devices can only be operated in CAN Classic mode (CAN 2.0).\
+{\listtext	
+\f3 \uc0\u9702 
+\f1 	}The size of the table view is limited to 1024 rows.\
+{\listtext	
+\f3 \uc0\u9702 
+\f1 	}The size of the trace file is limited to 100K frames.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b\fs28 macOS\'ae Library for PCAN-USB Interfaces
+\f1\b0\fs24 \
+\
+The dynamic library libPCBUSB is running under macOS 10.13 and later (Intel architecture and Apple silicon). The API is almost compatible to PEAK\'b4s PCANBasic DLL on Windows. See the MacCAN website to learn more.\
+\
+
+\f0\b Supported Devices
+\f1\b0 \
+\
+Only the following devices from PEAK-System Technik are supported:\
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls2\ilvl0\cf0 {\listtext	
+\f3 \uc0\u10003 
+\f1 	}PCAN-USB (product code: IPEH-002021, IPEH-002022)\
+{\listtext	
+\f3 \uc0\u10003 
+\f1 	}PCAN-USB FD (product code: IPEH-004022)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b Required Library Version
+\f1\b0 \
+\
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls3\ilvl0\cf0 {\listtext	
+\f3 \uc0\u10003 
+\f1 	}The minimum required library version is v0.9 (Build 902 of June 25, 2020). But 
+\f2\i Latest is Greatest
+\f1\i0 .\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b\fs28 Known Bugs and Caveats
+\f1\b0\fs24 \
+\
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls4\ilvl0\cf0 {\listtext	
+\f3 \uc0\u9702 
+\f1 	}For a list of known bugs and caveats see tab Issues in the GitHub repo.\
+{\listtext	
+\f3 \uc0\u9702 
+\f1 	}For a list of known bugs and caveats in the underlying PCBUSB library read the documentation of the appropriated library version.\
+{\listtext	
+\f3 \uc0\u9702 
+\f1 	}PCAN-USB Pro FD devices are supported since version 0.10 of the PCBUSB library, but only the first channel (CAN1).\
+{\listtext	
+\f3 \uc0\u9702 
+\f1 	}Apple\'b4s M1 chip is supported since version 0.10.1 of the PCBUSB library (Universal macOS Binary).\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b\fs28 This and That
+\fs26 \ul \
+
+\f1\b0\fs24 \ulnone \
+\pard\tx220\tx736\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 	
+\f3 \uc0\u8594 
+\f1 	The PCBUSB library can be downloaded form the MacCAN download server (binaries only). Please note the copyright and license agreements.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b License\
+
+\f1\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls5\ilvl0\cf0 {\listtext	
+\f3 \uc0\u10003 
+\f1 	}This work is licensed under the terms of the BSD 2-Clause "Simplified" License.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b Trademarks\
+
+\f1\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls6\ilvl0\cf0 {\listtext	\uc0\u8226 	}Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries.\
+{\listtext	\uc0\u8226 	}PCAN is a registered trademark of PEAK-System Technik GmbH, Darmstadt.\
+{\listtext	\uc0\u8226 	}All other company, product and service names mentioned herein are trademarks, registered trademarks or service marks of their respective owners.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b Credits\
+
+\f1\b0 \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls7\ilvl0\cf0 {\listtext	\uc0\u8226 	}Toolbar icons by Oxygen Team (GNU Lesser General Public License)\
+{\listtext	\uc0\u8226 	}Apple M1 support by Sebasti\'e3o Beir\'e3o (https://github.com/sebashb)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \ul \ulc2 Hazard note
+\fs26 \
+
+\f1\b0\fs24 \ulnone \
+\pard\tx220\tx720\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720\pardirnatural\partightenfactor0
+\ls8\ilvl0\cf2 {\listtext	
+\f4 \uc0\u9888 \u65038 
+\f1 	}Do not connect your CAN device to a real CAN network when using this program, this might damage your application.\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\b \cf0 Contact
+\fs26 \
+
+\f1\b0\fs24 \
+\pard\tx220\tx736\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 	
+\f3 \uc0\u8594 
+\f1 	mailto:info@mac-can.com\
+	
+\f3 \uc0\u8594 
+\f1 	https://www.mac-can.com\
+}
