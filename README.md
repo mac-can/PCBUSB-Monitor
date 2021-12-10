@@ -32,8 +32,7 @@ Only the following devices from PEAK-System Technik are supported:
 
 ### Required Library Version
 
-The minimum required library version is v0.9 (Build 902 of June 25, 2020).
-But _Latest is Greatest_.
+The minimum required library version is v0.9 (Build 902 of June 25, 2020), but _Latest is Greatest_.
 
 ## Known Bugs and Caveats
 
