@@ -32,7 +32,7 @@
 #import <time.h>
 
 
-#define _SHOW_INFO_BAUDRATE
+//#define _SHOW_INFO_BAUDRATE
 //#define _issue_MACCAN_2
 
 
@@ -139,8 +139,8 @@ const struct {
     
     [self endConnectSheet:sender];
 
-    char version[256] = "PCBUSB library, version 0.0.0.0 for macOS (x86_64)";
-    if((result = CAN_GetValue(PCAN_NONEBUS, PCAN_EXT_SOFTWARE_VERSION, (void*)version, 256)) != PCAN_ERROR_OK)
+    char version[256] = "PCBUSB 0.0.0.0\n";
+    if((result = CAN_GetValue(PCAN_USBBUS1 + (TPCANHandle)indexInterface, PCAN_CHANNEL_VERSION, (void*)version, 256)) != PCAN_ERROR_OK)
     {
         char errorText[256] = "(unknown)";
         (void)CAN_GetErrorText(result, 0x00, errorText);
@@ -159,7 +159,7 @@ const struct {
         return;
     }
     unsigned int major = 0, minor = 0;
-    sscanf(version, "PCBUSB library, version %u.%u", &major, &minor);
+    sscanf(version, "PCBUSB %u.%u", &major, &minor);
     if((major != 0) || (minor < 9))
     {
         NSString *string = [NSString stringWithFormat:@"Library version %u.%u loaded - Incompatible",major,minor];
@@ -224,10 +224,11 @@ const struct {
     TPCANStatus status = PCAN_ERROR_OK;
     
     if((status = CAN_GetValue(hDevice, PCAN_EXT_HARDWARE_VERSION, (void*)hardware, 256)) != PCAN_ERROR_OK)
-        status = CAN_GetValue(hDevice, PCAN_CHANNEL_VERSION, (void*)hardware, 256);
+        status = CAN_GetValue(hDevice, PCAN_HARDWARE_NAME, (void*)hardware, 256);
     if((status = CAN_GetValue(hDevice, PCAN_EXT_SOFTWARE_VERSION, (void*)software, 256)) != PCAN_ERROR_OK)
-        status = CAN_GetValue(hDevice, PCAN_API_VERSION, (void*)software, 256);
-    status = CAN_GetValue(hDevice, PCAN_EXT_BTR0BTR1, (void*)&btr0btr1, sizeof(btr0btr1));
+        status = CAN_GetValue(hDevice, PCAN_CHANNEL_VERSION, (void*)software, 256);
+    if((status = CAN_GetValue(hDevice, PCAN_EXT_BTR0BTR1, (void*)&btr0btr1, sizeof(btr0btr1))) != PCAN_ERROR_OK)
+        status = CAN_GetValue(hDevice, PCAN_BITRATE_INFO, (void*)&btr0btr1, sizeof(btr0btr1));
     status = CAN_GetStatus(hDevice);
     
     if((status & ~PCAN_ERROR_ANYBUSERR) == PCAN_ERROR_OK)
@@ -249,9 +250,9 @@ const struct {
         [alert setMessageText:@"MacCAN Monitor using libPCBUSB"];
         [alert addButtonWithTitle:@"OK"];
 #ifdef _SHOW_INFO_BAUDRATE
-        [alert setInformativeText:[NSString stringWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s\nBaud rate:\n   %s kBit/s (Btr0Btr1 = 0x%04x)",hardware,software,baudrate,btr0btr1]];
+        [alert setInformativeText:[NSString stringWithFormat:@"Hardware:\n   %s\n\nSoftware:\n   %s\n\nBaudrate:\n   %s kBit/s (Btr0Btr1 = 0x%04x)",hardware,software,baudrate,btr0btr1]];
 #else
-        [alert setInformativeText:[NSString stringWithFormat:@"Hardware:\n   %s\nSoftware:\n   %s",hardware,software]];
+        [alert setInformativeText:[NSString stringWithFormat:@"Hardware:\n   %s\n\nSoftware:\n   %s",hardware,software]];
 #endif
         [alert beginSheetModalForWindow:_window completionHandler:nil];
     }

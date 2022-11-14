@@ -389,7 +389,7 @@
 				GCC_PREFIX_HEADER = "MacCAN Monitor/MacCAN Monitor-Prefix.pch";
 				INFOPLIST_FILE = "MacCAN Monitor/MacCAN Monitor-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MARKETING_VERSION = "0.3.2 dev";
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.uv-software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -405,7 +405,7 @@
 				GCC_PREFIX_HEADER = "MacCAN Monitor/MacCAN Monitor-Prefix.pch";
 				INFOPLIST_FILE = "MacCAN Monitor/MacCAN Monitor-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MARKETING_VERSION = "0.3.2 dev";
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.uv-software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
