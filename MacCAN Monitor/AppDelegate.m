@@ -188,11 +188,15 @@ const struct {
 
         if([checkboxLog state] == NSControlStateValueOn)
         {
+            NSString *homedir = NSHomeDirectory();
+            const char *pathname = [homedir UTF8String];
             BYTE value = TRACE_FILE_SINGLE | TRACE_FILE_DATE | TRACE_FILE_TIME;
             (void)CAN_SetValue(hDevice, PCAN_TRACE_CONFIGURE, (void*)&value, sizeof(value));
+            (void)CAN_SetValue(hDevice, PCAN_TRACE_LOCATION, (void*)pathname, 256);
             value = PCAN_PARAMETER_ON;
             result = CAN_SetValue(hDevice, PCAN_TRACE_STATUS, (void*)&value, sizeof(value));
             NSLog(@"Tracing %s",result? "not possible" : "enabled");
+            if(result == PCAN_ERROR_OK) NSLog(@"Trace location: %s",pathname);
         }
     }
     else
