@@ -1,9 +1,9 @@
 # CAN Monitor App for macOS®
 
-_Copyright © 2013-2021 by UV Software, Berlin._
+_Copyright © 2013-2022 by UV Software, Berlin._
 
 The MacCAN Monitor App is a little demo program to show the functionally of the PCBUSB library:
-the [macOS® Library for PCAN-USB interfaces](https://www.mac-can.com/).
+the [macOS® Library for PCAN-USB Interfaces](https://www.mac-can.com/).
 
 ## MacCAN Monitor App for PCAN-USB Interfaces
 
@@ -43,7 +43,7 @@ The minimum required library version is v0.9 (Build 902 of June 25, 2020), but _
 
 ## This and That
 
-The PCBUSB library can be downloaded form the [MacCAN download server](https://www.uv-software.de/dokuwiki/doku.php?id=uvs:programs:pcbusb_library) (binaries only).
+The PCBUSB library can be downloaded form its [GitHub repo](https://github.com/mac-can/PCBUSB-Library/releases) (binaries only).
 Please note the copyright and license agreements.
 
 ### License
@@ -56,7 +56,7 @@ This work is licensed under the terms of the BSD 2-Clause "Simplified" License.
 
 - Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries.
 - PCAN is a registered trademark of PEAK-System Technik GmbH, Darmstadt.
-- All other company, product and service names mentioned herein are trademarks, registered trademarks or service marks of their respective owners.
+- All other company, product and service names mentioned herein may be trademarks, registered trademarks or service marks of their respective owners.
 
 ### Credits
 
