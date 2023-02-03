@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44E565A0298DA4A8002DC027 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 44E5659F298DA4A8002DC027 /* LICENSE */; };
 		6258EAEE17CA2F680096D5A8 /* MacCAN Monitor.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 6258EAED17CA2F680096D5A8 /* MacCAN Monitor.iconset */; };
 		627944A917DA4635006CE9CD /* icon_clear.icns in Resources */ = {isa = PBXBuildFile; fileRef = 627944A317DA4635006CE9CD /* icon_clear.icns */; };
 		627944AA17DA4635006CE9CD /* icon_info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 627944A517DA4635006CE9CD /* icon_info.icns */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		0F87E8A824A53E1F00AEAE82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		44E5659F298DA4A8002DC027 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = Wrapper/LICENSE; sourceTree = "<group>"; };
 		6258EAED17CA2F680096D5A8 /* MacCAN Monitor.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = "MacCAN Monitor.iconset"; sourceTree = SOURCE_ROOT; };
 		627944A417DA4635006CE9CD /* en */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = en; path = en.lproj/icon_clear.icns; sourceTree = "<group>"; };
 		627944A617DA4635006CE9CD /* en */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = en; path = en.lproj/icon_info.icns; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		6297F60217C10CD6006B2F69 /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				44E5659F298DA4A8002DC027 /* LICENSE */,
 				6297F60317C10DF8006B2F69 /* PCBUSB.c */,
 				6297F60517C10E30006B2F69 /* PCBUSB.h */,
 			);
@@ -194,6 +197,7 @@
 				6297F5F017C0F966006B2F69 /* Credits.rtf in Resources */,
 				6297F5F617C0F967006B2F69 /* MainMenu.xib in Resources */,
 				6297F5FE17C106A6006B2F69 /* License.rtf in Resources */,
+				44E565A0298DA4A8002DC027 /* LICENSE in Resources */,
 				6297F60117C106BF006B2F69 /* Readme.rtf in Resources */,
 				6258EAEE17CA2F680096D5A8 /* MacCAN Monitor.iconset in Resources */,
 				627944A917DA4635006CE9CD /* icon_clear.icns in Resources */,
