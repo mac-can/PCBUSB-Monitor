@@ -4,7 +4,7 @@
  *
  *  purpose   :  PCAN Application Programming Interface
  *
- *  copyright :  (C) 2012-2022 by UV Software, Berlin
+ *  copyright :  (C) 2012-2023 by UV Software, Berlin
  *
  *  compiler  :  Apple clang version 14.0.0 (clang-1400.0.29.202)
  *
