@@ -1,6 +1,6 @@
 # CAN Monitor App for macOS®
 
-_Copyright © 2013-2022 by UV Software, Berlin._
+_Copyright © 2013-2023 by UV Software, Berlin._
 
 The MacCAN Monitor App is a little demo program to show the functionally of the PCBUSB library:
 the [macOS® Library for PCAN-USB Interfaces](https://www.mac-can.com/).
@@ -33,6 +33,31 @@ Only the following devices from PEAK-System Technik are supported:
 ### Required Library Version
 
 The minimum required library version is v0.9 (Build 902 of June 25, 2020), but _Latest is Greatest_.
+
+### Target Platform
+
+- macOS 11.0 and later (Intel and Apple silicon)
+- OS X 10.13 and later (Intel architecture only)
+
+### Development Environment
+
+#### macOS Ventura
+
+- macOS Ventura (13.2) on a Mac mini (M1, 2020)
+- Apple clang version 14.0.0 (clang-1400.0.29.202)
+- Xcode Version 14.2 (14F18)
+
+#### macOS Big Sur
+
+- macOS Big Sur (11.7.3) on a MacBook Pro (2019)
+- Apple clang version 13.0.0 (clang-1300.0.29.30)
+- Xcode Version 13.2.1 (13C100)
+
+#### macOS High Sierra
+
+- macOS High Sierra (10.13.6) on a MacBook Pro (late 2011)
+- Apple LLVM version 10.0.0 (clang-1000.11.45.5)
+- Xcode Version 10.1 (10B61)
 
 ## Known Bugs and Caveats
 
