@@ -6,7 +6,7 @@
  *
  *  copyright :  (C) 2012-2023 by UV Software, Berlin
  *
- *  compiler  :  Apple clang version 14.0.0 (clang-1400.0.29.202)
+ *  compiler  :  Apple clang version 15.0.0 (clang-1500.0.40.1)
  *
  *  export    :  TPCANStatus CAN_Initialize(TPCANHandle Channel, TPCANBaudrate Btr0Btr1, TPCANType HwType, DWORD IOPort, WORD Interrupt);
  *               TPCANStatus CAN_Uninitialize(TPCANHandle Channel);
@@ -38,12 +38,12 @@
  *  implementation of the PEAK PCANBasic DLL on macOS (x86_64 and arm64).
  *
  *  Supported CAN Interfaces:
- *  - PCAN-USB
- *  - PCAN-USB FD
- *  Up to 8 devices are supported.
+ *  - PCAN-USB (item no. IPEH-002021/002022)
+ *  - PCAN-USB FD (item no. IPEH-004022)
+ *  Up to 8 channel handles are supported.
  *
  *  Version of PCAN API:
- *  - Based on PEAK's version of 2022-07-06
+ *  - Based on PEAK's version of 2023-08-28
  */
 
 #ifndef PCAN_API_H_INCLUDED
@@ -78,7 +78,7 @@
 #define __T(s)  s
 #endif
 
-/* Defined and supported PCAN channels
+/* Currently defined and supported PCAN channels
  */
 #define PCAN_NONEBUS             0x00U  //!< Undefined/default value for a PCAN bus
 
@@ -102,7 +102,7 @@
 #endif
 
 
-/* PCAN error and status codes
+/* Represent the PCAN error and status codes
  */
 #define PCAN_ERROR_OK            0x00000U  //!< No error
 #define PCAN_ERROR_XMTFULL       0x00001U  //!< Transmit buffer in CAN controller is full
@@ -193,6 +193,7 @@
 #define PCAN_ATTACHED_CHANNELS        0x2BU //!< Get information about PCAN channels attached to a system
 #define PCAN_ALLOW_ECHO_FRAMES        0x2CU //!< Echo messages reception status within a PCAN-Channel
 #define PCAN_DEVICE_PART_NUMBER       0x2DU //!< Get the part number associated to a device
+#define PCAN_HARD_RESET_STATUS        0x2EU //!< Activation status of hard reset processing via CAN_Reset calls
 #define PCAN_EXT_BTR0BTR1        0x80U  //!< UVS: bit-timing register
 #define PCAN_EXT_TX_COUNTER      0x81U  //!< UVS: number of transmitted frames
 #define PCAN_EXT_RX_COUNTER      0x82U  //!< UVS: number of received frames
@@ -232,6 +233,7 @@
 #define TRACE_FILE_DATE          0x02U  //!< Includes the date into the name of the trace file
 #define TRACE_FILE_TIME          0x04U  //!< Includes the start time into the name of the trace file
 #define TRACE_FILE_OVERWRITE     0x80U  //!< Causes the overwriting of available traces (same name)
+#define TRACE_FILE_DATA_LENGTH   0x100U //!< Causes using the data length column ('l') instead of the DLC column ('L') in the trace file
 
 #define FEATURE_FD_CAPABLE       0x01U  //!< Device supports flexible data-rate (CAN-FD)
 #define FEATURE_DELAY_CAPABLE    0x02U  //!< Device supports a delay between sending frames (FPGA based USB devices)
@@ -243,7 +245,7 @@
 /* Other constants
  */
 #define MAX_LENGTH_HARDWARE_NAME   33   //!< Maximum length of the name of a device: 32 characters + terminator
-#define MAX_LENGTH_VERSION_STRING  256  //!< Maximum length of a version string: 17 characters + terminator
+#define MAX_LENGTH_VERSION_STRING  256  //!< Maximum length of a version string: 255 characters + terminator
 
 /* PCAN message types
  */
@@ -313,42 +315,42 @@
 /*  -----------  types  --------------------------------------------------
  */
 
-#define TPCANHandle              WORD  //!< PCAN hardware channel handle
-#define TPCANStatus              DWORD //!< PCAN status/error code (ATTENTION: changed from 64-bit to 32-bit)
-#define TPCANParameter           BYTE  //!< PCAN parameter to be read or set
-#define TPCANDevice              BYTE  //!< PCAN device
-#define TPCANMessageType         BYTE  //!< The type of a PCAN message
-#define TPCANType                BYTE  //!< The type of PCAN hardware to be initialized
-#define TPCANMode                BYTE  //!< PCAN filter mode
-#define TPCANBaudrate            WORD  //!< PCAN Baud rate register value
-#define TPCANBitrateFD           LPSTR //!< PCAN-FD bit rate string
-#define TPCANTimestampFD         UINT64//!< timestamp of a received PCAN FD message
+#define TPCANHandle              WORD  //!< Represents a PCAN hardware channel handle
+#define TPCANStatus              DWORD //!< Represents a PCAN status/error code (ATTENTION: changed from 64-bit to 32-bit)
+#define TPCANParameter           BYTE  //!< Represents a PCAN parameter to be read or set
+#define TPCANDevice              BYTE  //!< Represents a PCAN device
+#define TPCANMessageType         BYTE  //!< Represents the type of a PCAN message
+#define TPCANType                BYTE  //!< Represents the type of PCAN hardware to be initialized
+#define TPCANMode                BYTE  //!< Represents a PCAN filter mode
+#define TPCANBaudrate            WORD  //!< Represents a PCAN Baud rate register value
+#define TPCANBitrateFD           LPSTR //!< Represents a PCAN-FD bit rate string
+#define TPCANTimestampFD         UINT64//!< Represents a timestamp of a received PCAN FD message
 
-/** PCAN message
+/** Represents a PCAN message
  */
 typedef struct tagTPCANMsg
 {
-    DWORD             ID;      //!< 11/29-bit message identifier (ATTENTION: changed from 64-bit to 32-bit)
+    DWORD             ID;      //!< 11/29-bit message identifier
     TPCANMessageType  MSGTYPE; //!< Type of the message
     BYTE              LEN;     //!< Data Length Code of the message (0..8)
     BYTE              DATA[8]; //!< Data of the message (DATA[0]..DATA[7])
 } TPCANMsg;
 
-/** Timestamp of a received PCAN message
+/** Represents a timestamp of a received PCAN message
  *  Total Microseconds = micros + 1000 * millis + 0x100000000 * 1000 * millis_overflow
  */
 typedef struct tagTPCANTimestamp
 {
-    DWORD  millis;             //!< Base-value: milliseconds: 0.. 2^32-1 (ATTENTION: changed from 64-bit to 32-bit)
+    DWORD  millis;             //!< Base-value: milliseconds: 0.. 2^32-1
     WORD   millis_overflow;    //!< Roll-arounds of millis
     WORD   micros;             //!< Microseconds: 0..999
 } TPCANTimestamp;
 
-/** PCAN message from a FD capable hardware
+/** Represents a PCAN message from a FD capable hardware
  */
 typedef struct tagTPCANMsgFD
 {
-    DWORD             ID;      //!< 11/29-bit message identifier (ATTENTION: changed to 32-bit)
+    DWORD             ID;      //!< 11/29-bit message identifier
     TPCANMessageType  MSGTYPE; //!< Type of the message
     BYTE              DLC;     //!< Data Length Code of the message (0..15)
     BYTE              DATA[64];//!< Data of the message (DATA[0]..DATA[63])
@@ -404,15 +406,15 @@ TPCANStatus CAN_Initialize(
  *  @param[in]   Channel    The handle of a FD capable PCAN Channel.
  *  @param[in]   BitrateFD  The speed for the communication (FD bit rate string).
  *
- *  @note        See PCAN_BR_* values
+ *  @remarks     See PCAN_BR_* values
  *               <ul>
  *                <li>Parameter and values must be separated by '='.</li>
  *                <li>Couples of Parameter/value must be separated by ','.</li>
- *                <li>Following Parameter must be filled out: f_clock, data_brp, data_sjw, data_tseg1,
- *                    data_tseg2, nom_brp, nom_sjw, nom_tseg1, nom_tseg2.</li>
+ *                <li>Following Parameter must be filled out: f_clock, nom_brp, nom_sjw, nom_tseg1, nom_tseg2,
+ *                    data_brp, data_sjw, data_tseg1, data_tseg2.</li>
  *                <li>Following Parameters are optional (not used yet): data_ssp_offset, nom_sam.</li>
  *               </ul>
- *  @note        Example:
+ *  @remarks     Example:
  *  @verbatim
  *               f_clock=80000000,nom_brp=10,nom_tseg1=5,nom_tseg2=2,nom_sjw=1,data_brp=4,data_tseg1=7,data_tseg2=2,data_sjw=1
  *  @endverbatim
@@ -422,9 +424,9 @@ TPCANStatus CAN_InitializeFD(
         TPCANHandle Channel,
         TPCANBitrateFD BitrateFD);
 
-/** @brief       Uninitializes one or all PCAN Channels initialized by CAN_Initialize.
+/** @brief       Uninitializes one or all PCAN Channels initialized by CAN_Initialize
  *
- *  @note        Giving the TPCANHandle value "PCAN_NONEBUS" uninitializes all initialized channels.
+ *  @remarks     Giving the TPCANHandle value "PCAN_NONEBUS", uninitializes all initialized channels.
  *
  *  @param[in]   Channel    The handle of a PCAN Channel.
  *
@@ -435,7 +437,7 @@ TPCANStatus CAN_Uninitialize(
 
 /** @brief       Resets the receive and transmit queues of the PCAN Channel.
  *
- *  @note        A reset of the CAN controller is not performed.
+ *  @remarks     A reset of the CAN controller is not performed.
  *
  *  @param[in]   Channel    The handle of a PCAN Channel.
  *
@@ -505,7 +507,7 @@ TPCANStatus CAN_WriteFD(
 
 /** @brief       Configures the reception filter.
  *
- *  @note        The message filter will be expanded with every call to  this function.
+ *  @remarks     The message filter will be expanded with every call to  this function.
  *               If it is desired to reset the filter, please use the CAN_SetValue function.
  *
  *  @param[in]   Channel    The handle of a PCAN Channel.
@@ -523,7 +525,7 @@ TPCANStatus CAN_FilterMessages(
 
 /** @brief       Retrieves a PCAN Channel value.
  *
- *  @note        Parameters can be present or not according with the kind of Hardware (PCAN Channel) being used.
+ *  @remarks     Parameters can be present or not according with the kind of Hardware (PCAN Channel) being used.
  *               If a parameter is not available, a PCAN_ERROR_ILLPARAMTYPE error will be returned.
  *
  *  @param[in]   Channel       The handle of a PCAN Channel.
@@ -542,7 +544,7 @@ TPCANStatus CAN_GetValue(
 
 /** @brief       Configures or sets a PCAN Channel value.
  *
- *  @note        Parameters can be present or not according with the kind of Hardware (PCAN Channel) being used.
+ *  @remarks     Parameters can be present or not according with the kind of Hardware (PCAN Channel) being used.
  *               If a parameter is not available, a PCAN_ERROR_ILLPARAMTYPE error will be returned.
  *
  *  @param[in]   Channel       The handle of a PCAN Channel.
@@ -560,7 +562,7 @@ TPCANStatus CAN_SetValue(
 
 /** @brief       Returns a descriptive text of a given TPCANStatus error code, in any desired language.
  *
- *  @note        The current languages available for translation are:
+ *  @remarks     The current languages available for translation are:
  *               Neutral (0x00), German (0x07), English (0x09), Spanish (0x0A), Italian (0x10) and French (0x0C).
  *
  *  @param[in]   Error     A TPCANStatus error code.
