@@ -43,13 +43,13 @@ The minimum required library version is v0.9 (Build 902 of June 25, 2020), but _
 
 #### macOS Ventura
 
-- macOS Ventura (13.2) on a Mac mini (M1, 2020)
-- Apple clang version 14.0.0 (clang-1400.0.29.202)
-- Xcode Version 14.2 (14F18)
+- macOS Ventura (13.6.1) on a Mac mini (M1, 2020)
+- Apple clang version 15.0.0 (clang-1500.0.40.1)
+- Xcode Version 15.0.1 (15A507)
 
 #### macOS Big Sur
 
-- macOS Big Sur (11.7.3) on a MacBook Pro (2019)
+- macOS Big Sur (11.7.10) on a MacBook Pro (2019)
 - Apple clang version 13.0.0 (clang-1300.0.29.30)
 - Xcode Version 13.2.1 (13C100)
 
@@ -81,7 +81,7 @@ This work is licensed under the terms of the BSD 2-Clause "Simplified" License.
 
 - Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries.
 - PCAN is a registered trademark of PEAK-System Technik GmbH, Darmstadt.
-- All other company, product and service names mentioned herein may be trademarks, registered trademarks or service marks of their respective owners.
+- All other company, product and service names mentioned herein may be trademarks, registered trademarks, or service marks of their respective owners.
 
 ### Credits
 
